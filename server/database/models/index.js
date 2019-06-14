@@ -1,14 +1,15 @@
-const Student = require('./student');
-const Campus  = require('./campus');
-
+const Player = require('./player');
+const User  = require('./user');
 // Associations;
 // Source.association(Target);
 
-// O:M;
-Campus.hasMany(Student); // A one-to-many relationship that adds the column titled "teamId" to the table of players;
-Student.belongsTo(Campus); // A one-to-one relationship that adds the column titled "teamId" to the table of players;
+// M:M;
+
+Player.belongsToMany(User, {through:'favorites'});
+User.belongsToMany(Player, {through:'favorites'});
+
+
 
 module.exports = {
-  Student,
-  Campus
+  Player, User
 };

@@ -1,13 +1,12 @@
 const router = require("express").Router();
 const bodyParser = require('body-parser');
 //subrouters
-const studentsRouter = require("./students");
+const usersRouter = require("./users");
+const playersRouter = require("./players");
 
-const campusesRouter = require("./campuses");
+router.use("/players", playersRouter);
+router.use("/users", usersRouter);
 
-
-router.use("/students", studentsRouter);
-router.use("/campuses", campusesRouter);
 
 router.use((req, res, next) => {
   const error = new Error("Not Found, Please Check URL!");
