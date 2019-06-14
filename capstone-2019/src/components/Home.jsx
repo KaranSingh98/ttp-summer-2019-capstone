@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import NavBar from './NavBar';
 
 class Home extends Component {
 
@@ -10,10 +11,9 @@ class Home extends Component {
                 <header>
                     <h1> Basketcase </h1>
                 </header>
+                <NavBar />
             </div>
-
         );
-
     }
 };
 
