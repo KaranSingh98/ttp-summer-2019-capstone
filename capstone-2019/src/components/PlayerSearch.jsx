@@ -3,32 +3,42 @@
  * will pass the form results to the Results Page
 */ 
 import React, {Component} from 'react';
-import PlayeSearchView from './PlayerSearchView';
 
 class PlayerSearch extends Component {
-	constructor(){
-		super();
+	
+	constructor(props) {
+		super(props);
 		
 		this.state = {
-			searchResult: ""
-		}
-		this.baseState = this.state;
-	}
+			searchResult : ''
+		};
+	};
 
 
-	handeSubmit = (event) =>
-	{
-		event.preventDefault();
-		[event.target.name] = event.target.value;
-	}
+	handeSubmit = (event) => {
+		// handle submit should send the search text to
+		// either the API or the database
+		// Will be implemented with redux thunk?
+	};
+
+	handleChange = (event) => {
+        this.setState({ 
+        	[event.target.name]: event.target.value 
+        })
+        console.log(event.target.value);
+
+	};
 
 	render() {
 		return(
-			<PlayeSearchView search={this.state.searchResult} onSubmit={this.handleSubmit};
-			)
-	}
+		<div>
+		<form name='PlayerSearch'>
+            <input type='text' name='searchResult' placeholder='Search for a player' value={this.state.searchResult} onChange={this.handleChange}/>
+        </form>
+               <button type="submit" onClick={this.handleSubmit}> Submit </button>
 
-	}
+      </div>
+  			)}
 };
 
-export default PlayerSearch
+export default PlayerSearch;
