@@ -11,9 +11,7 @@ class Home extends Component {
                     <h1> Basketcase </h1>
                 </header>
             </div>
-
         );
-
     }
 };
 
