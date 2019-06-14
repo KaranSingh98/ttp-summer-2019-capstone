@@ -3,13 +3,14 @@
  * will pass the form results to the Results Page
 */ 
 import React, {Component} from 'react';
+import PlayeSearchView from './PlayerSearchView';
 
 class PlayerSearch extends Component {
 	constructor(){
 		super();
 		
 		this.state = {
-			searchResults: ""
+			searchResult: ""
 		}
 		this.baseState = this.state;
 	}
@@ -18,24 +19,16 @@ class PlayerSearch extends Component {
 	handeSubmit = (event) =>
 	{
 		event.preventDefault();
-		[event.target] = event.target.value
-	}
-
+		[event.target.name] = event.target.value;
 	}
 
 	render() {
-		return()
-
-
-
+		return(
+			<PlayeSearchView search={this.state.searchResult} onSubmit={this.handleSubmit};
+			)
 	}
 
-
-
-
-
-
-
+	}
 };
 
 export default PlayerSearch
