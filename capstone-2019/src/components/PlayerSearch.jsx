@@ -1,15 +1,15 @@
-/* Player Search Smart Component that will 
- *  handle the search bar form and 
+/* Player Search Smart Component that will
+ *  handle the search bar form and
  * will pass the form results to the Results Page
-*/ 
+*/
 import React, {Component} from 'react';
 import axios from 'axios';
 
 class PlayerSearch extends Component {
-	
+
 	constructor(props) {
 		super(props);
-		
+
 		this.state = {
 		//	query: '',
 			results: []
@@ -19,9 +19,9 @@ class PlayerSearch extends Component {
 	};
 
 	async fetchSearch(query) {
-		let url = "https://www.balldontlie.io/api/v1/players?search=" + query; 
+		let url = "https://www.balldontlie.io/api/v1/players?search=" + query;
 
-		try 
+		try
 		{
 			let { data }  = await axios.get(url);
 			this.setState({results: data.data});
@@ -40,8 +40,11 @@ class PlayerSearch extends Component {
 	};
 
 	handleChange = (event) => {
-        this.fetchSearch(event.target.value);
 
+		if(event.target.value == '')
+			this.fetchSearch('ababababababab');
+		else
+        	this.fetchSearch(event.target.value);
 	};
 
 	// All of these individual list items representing player objects

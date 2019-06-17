@@ -9,6 +9,7 @@ function signUpReducer(state = {
 
     switch(action.type) {
         case CREATE_USER: {
+            console.log(action.payload);
             return action.payload;
         }
         default:

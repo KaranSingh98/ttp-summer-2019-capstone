@@ -11,6 +11,6 @@ const userLogin = (user) => {
 
 export const userLoginThunk = (user) => (dispatch) => {
 
-    // axios get request to user database
-
+    return dispatch(userLogin(user));
+    
 }; // end of userLoginThunk

@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link, Redirect} from 'react-router-dom';
 import NavBar from './NavBar';
 import {userLoginThunk} from '../actions/LoginActions';
 
 
 const mapStates = (state) => {
     return {
-        user: state.loginReducer.user
+        user: state.loginReducer.user,
+        login: state.loginReducer.login
     };
 
 }; // end of mapStates
+
 
 const mapDispatch = (dispatch) => {
 
@@ -53,6 +56,7 @@ class Login extends Component {
 
     }; // end of handleSubmit
 
+
     render() {
 
         return (
@@ -71,6 +75,9 @@ class Login extends Component {
                 </form>
 
                 <button type='submit' onClick={this.handleSubmit}> Submit </button>
+
+                {this.props.login && <Redirect to='/'/>}
+
             </div>
         );
 

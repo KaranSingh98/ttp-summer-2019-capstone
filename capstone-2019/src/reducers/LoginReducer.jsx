@@ -15,6 +15,7 @@ function loginReducer(state = {
                 ...state,
                 login: true
             };
+            console.log(state);
         }
         default:
             return state;
