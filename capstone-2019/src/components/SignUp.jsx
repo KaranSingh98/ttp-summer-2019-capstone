@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import NavBar from './NavBar';
+import {Link} from 'react-router-dom';
 import {createUserThunk} from '../actions/SignUpActions';
 import {connect} from 'react-redux';
 
@@ -65,9 +66,12 @@ class SignUp extends Component {
                         onChange={this.handleChange}/> <br/>
                 </form> <br/>
 
-                <button type='submit' onClick={this.handleSubmit}> Create Account </button>
+                <Link to='/'>
+                    <button type='submit' onClick={this.handleSubmit}> Create Account </button>
+                </Link>
             </div>
         );
+        
     }; // end of render
 
 }; // end of SignUp class
