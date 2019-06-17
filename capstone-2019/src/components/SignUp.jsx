@@ -42,7 +42,7 @@ class SignUp extends Component {
             password: this.state.password
         };
       console.log(newUser);
-        this.props.createUser(newUser);
+      this.props.createUser(newUser);
 
     }; // end of handleSubmit
 
