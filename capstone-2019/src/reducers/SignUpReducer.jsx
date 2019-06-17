@@ -2,8 +2,8 @@ import {CREATE_USER} from '../actions/SignUpActions';
 
 function signUpReducer(state = {
     user: {
-        email: '',
-        password: ''
+        email: 'karansingh98123@gmail.com',
+        password: 'password'
     }
 }, action) {
 
@@ -11,6 +11,8 @@ function signUpReducer(state = {
         case CREATE_USER: {
             return action.payload;
         }
+        default:
+            return state;
     };
 
 }; // end of signUpReducer
