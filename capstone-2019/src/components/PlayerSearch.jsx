@@ -50,7 +50,7 @@ class PlayerSearch extends Component {
 
 		const playerObj = this.state.results;
 		const list = playerObj.map((playerObj) =>
-			<li>{playerObj.first_name + "\n"} {playerObj.last_name + "\n" } </li>
+			<li key={playerObj.id}> {playerObj.first_name + "\n"} {playerObj.last_name + "\n" } </li>
 			);
 
 		console.log(playerObj);
