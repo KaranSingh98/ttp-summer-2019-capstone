@@ -35,7 +35,6 @@ class PlayerSearch extends Component {
             <input type='text' name='searchResult' placeholder='Search for a player' value={this.state.searchResult} onChange={this.handleChange}/>
         </form>
                <button type="submit" onClick={this.handleSubmit}> Submit </button>
-
       </div>
   			)}
 };
