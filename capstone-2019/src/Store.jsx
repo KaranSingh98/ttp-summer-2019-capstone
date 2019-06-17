@@ -4,5 +4,5 @@ import loginReducer from './reducers/LoginReducer';
 import signUpReducer from './reducer/SignUpReducer'
 
 const reducers = combineReducers(loginReducer)
-
-export default createStore(loginReducer, applyMiddlware(thunkMiddleware));
+const store = createStore(loginReducer, applyMiddlware(thunkMiddleware));
+export default store;

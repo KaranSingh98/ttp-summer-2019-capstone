@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import NavBar from './NavBar';
+import {userLoginThunk} from '../actions/LoginActions';
 
 
 const mapStates = (state) => {
+    return {
+        user: state.loginReducer.user
+    };
 
 }; // end of mapStates
-
 
 const mapDispatch = (dispatch) => {
 
@@ -16,7 +20,6 @@ const mapDispatch = (dispatch) => {
     };
 
 }; // end of mapDispatch
-
 
 
 class Login extends Component {
@@ -46,13 +49,15 @@ class Login extends Component {
             password: this.state.password
         };
 
-        userLogin(user);
+        this.props.userLogin(user);
 
     }; // end of handleSubmit
 
     render() {
+
         return (
             <div>
+
                 <NavBar/>
 
                 <h1> Please Login Below </h1>
@@ -65,7 +70,7 @@ class Login extends Component {
                         onChange={this.handleChange}/> <br/>
                 </form>
 
-                <button type="submit" onClick={this.handleSubmit}> Submit </button>
+                <button type='submit' onClick={this.handleSubmit}> Submit </button>
             </div>
         );
 

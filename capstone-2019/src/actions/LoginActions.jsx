@@ -4,7 +4,7 @@ const userLogin = (user) => {
 
     return {
         type: USER_LOGIN,
-        payload: user;
+        payload: user
     };
 
 }; // end of userLogin
