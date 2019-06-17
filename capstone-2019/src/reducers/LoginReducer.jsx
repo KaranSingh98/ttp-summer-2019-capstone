@@ -4,7 +4,8 @@ function loginReducer(state = {
     user: {
         email: '',
         password: ''
-    }
+    },
+    login: false
 }, action) {
 
     switch(action.type) {
