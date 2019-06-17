@@ -10,7 +10,10 @@ function loginReducer(state = {
 
     switch(action.type) {
         case USER_LOGIN: {
-            return action.payload;
+            return {
+                ...state,
+                login: true
+            };
         }
         default:
             return state;
