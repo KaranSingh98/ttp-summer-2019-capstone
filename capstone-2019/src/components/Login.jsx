@@ -77,6 +77,10 @@ class Login extends Component {
                 <button type='submit' onClick={this.handleSubmit}> Submit </button>
 
                 {this.props.login && <Redirect to='/'/>}
+                {
+                    !this.props.login &&
+                    <p> Try Again </p>
+                }
 
             </div>
         );
