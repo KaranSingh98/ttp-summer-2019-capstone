@@ -25,7 +25,6 @@ class PlayerSearch extends Component {
 		{
 			let { data }  = await axios.get(url);
 			this.setState({results: data.data});
-			console.log(data);
 		}
 		catch(err)
 		{
@@ -53,7 +52,6 @@ class PlayerSearch extends Component {
 			<li key={playerObj.id}> {playerObj.first_name + "\n"} {playerObj.last_name + "\n" } </li>
 			);
 
-		console.log(playerObj);
 		return(
 
 		<div>
