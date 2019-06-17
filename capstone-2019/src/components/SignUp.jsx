@@ -31,7 +31,7 @@ class SignUp extends Component {
 
     handleChange = event => {
 
-        this.setState({ [event.target.name]: event.target.value })
+      this.setState({ [event.target.name]: event.target.value });
 
     }; // end of handleChange
 
@@ -42,8 +42,8 @@ class SignUp extends Component {
             email: this.state.email,
             password: this.state.password
         };
-
-        this.props.createUser(newUser);
+      console.log(newUser);
+      this.props.createUser(newUser);
 
     }; // end of handleSubmit
 

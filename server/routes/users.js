@@ -7,9 +7,9 @@ router.use(bodyParser.json());
 
 router.get("/", async (req, res, next) => {
 
-    User.findAll()
-      .then(campus => res.json(campus))
-      .catch(next);
+  User.findAll()
+    .then(campus => res.json(campus))
+    .catch(next);
 
 
 });
@@ -30,6 +30,7 @@ router.get('/:id', async(req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log("do it");
     //  INSERT INTO user ("col1", "col2") VALUES ('val1', 'val2')
     let user = await User.create(req.body);
     res.status(201).json(user);
