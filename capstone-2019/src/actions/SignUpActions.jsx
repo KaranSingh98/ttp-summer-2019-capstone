@@ -11,11 +11,10 @@ const createUser = (newUser) => {
 }; // end of createUser
 
 export const createUserThunk = (newUser) => (dispatch) => {
-
-	return axios
-		.post("http://localhost:5000/api/users", newUser)
-		.then(res => res.data)
-		.then(newUser => dispatch(createUser(newUser)));
+return axios
+    .post("http://localhost:5000/api/users", newUser)
+    .then(res => res.data)
+    .then(newUser => dispatch(createUser(newUser)));
 
   //return dispatch(createUser(newUser));
 
