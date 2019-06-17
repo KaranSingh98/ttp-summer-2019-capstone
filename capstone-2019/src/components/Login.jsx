@@ -1,6 +1,24 @@
 import React, {Component} from 'react';
 import NavBar from './NavBar';
 
+
+const mapStates = (state) => {
+
+}; // end of mapStates
+
+
+const mapDispatch = (dispatch) => {
+
+    return {
+        userLogin: (user) => {
+            dispatch(userLoginThunk(user));
+        }
+    };
+
+}; // end of mapDispatch
+
+
+
 class Login extends Component {
 
     constructor(props){
@@ -23,7 +41,12 @@ class Login extends Component {
 
     handleSubmit = () => {
 
-        // stub
+        const user = {
+            email: this.state.email,
+            password: this.state.password
+        };
+
+        userLogin(user);
 
     }; // end of handleSubmit
 
@@ -41,6 +64,7 @@ class Login extends Component {
                     <input type='text' name='password' placeholer='Password'
                         onChange={this.handleChange}/> <br/>
                 </form>
+
                 <button type="submit" onClick={this.handleSubmit}> Submit </button>
             </div>
         );
@@ -49,4 +73,4 @@ class Login extends Component {
 
 }; // end of Login class
 
-export default Login;
+export default connect(mapStates, mapDispatch)(Login);
