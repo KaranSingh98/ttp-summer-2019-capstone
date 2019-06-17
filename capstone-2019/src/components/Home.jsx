@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import NavBar from './NavBar
+import NavBar from './NavBar';
 
 class Home extends Component {
 
@@ -11,7 +11,7 @@ class Home extends Component {
                 <header>
                     <h1> Basketcase </h1>
                 </header>
-                <NavBar />
+                <span> <NavBar /> </span>
             </div>
         );
     }
