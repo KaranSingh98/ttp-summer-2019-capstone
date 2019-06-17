@@ -11,7 +11,7 @@ class Home extends Component {
                 <header>
                     <h1> Basketcase </h1>
                 </header>
-                <NavBar />
+                <span> <NavBar /> </span>
             </div>
         );
     }
