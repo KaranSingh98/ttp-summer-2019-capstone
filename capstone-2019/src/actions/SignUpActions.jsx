@@ -8,8 +8,8 @@ const createUser = (newUser) => {
 
 }; // end of createUser
 
-const createUserThunk = (newUser) =>(dispatch) => {
+export const createUserThunk = (newUser) => (dispatch) => {
 
-    // axios post call to user database
+    return dispatch(createUser(newUser));
 
 }; // end of createUserThunk

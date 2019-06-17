@@ -1,5 +1,21 @@
 import React, {Component} from 'react';
 import NavBar from './NavBar';
+import {createUserThunk} from '../actions/SignUpActions';
+import {connect} from 'react-redux';
+
+const mapStates = (state) => {
+    return {
+        user: state.user
+    };
+}; // end of mapStates
+
+const mapDispatch = (dispatch) => {
+    return {
+        createUser: (newUser) => {
+            dispatch(createUserThunk(newUser));
+        }
+    };
+}
 
 class SignUp extends Component {
 
@@ -21,7 +37,12 @@ class SignUp extends Component {
 
     handleSubmit = () => {
 
-        // thunk call repsonsible for handling axios post call for user database
+        const newUser = {
+            email: this.state.email,
+            password: this.state.password
+        };
+
+        this.props.createUser(newUser);
 
     }; // end of handleSubmit
 
@@ -51,4 +72,4 @@ class SignUp extends Component {
 
 }; // end of SignUp class
 
-export default SignUp;
+export default connect(mapStates, mapDispatch)(SignUp);

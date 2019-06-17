@@ -1,4 +1,4 @@
-import {USER_LOGIN} from '../action/LoginActions';
+import {USER_LOGIN} from '../actions/LoginActions';
 
 function loginReducer(state = {
     user: {
@@ -9,12 +9,13 @@ function loginReducer(state = {
 }, action) {
 
     switch(action.type) {
-        
+
         case USER_LOGIN: {
             return {
                 ...state,
                 login: true
             };
+            console.log(state);
         }
         default:
             return state;
