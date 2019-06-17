@@ -1,8 +1,8 @@
 const { User, Player } = require('../database/models');
-//const players = require('../data/players');
-//const users  = require('../data/users');
+const players = require('../data/players');
+const users  = require('../data/users');
 
-/*
+
 const populateUserTable = async (campuses) => {
   for (let i = 0; i < users.length; i++) {
     let currentUser = users[i];
@@ -10,8 +10,6 @@ const populateUserTable = async (campuses) => {
     await builtUser.save();
   }
 };
-*/
-
 
 
 
@@ -19,8 +17,8 @@ const populateUserTable = async (campuses) => {
 const seedDatabase = async () => {
   try {
 
-    //await populateUserTable(users);
-    //await populateFavoriteTable(favorites);
+    await populateUserTable(users);
+    //await populatePlayerTable(favorites);
 
     console.log("Successfully seeded!");
     process.exit(0);
