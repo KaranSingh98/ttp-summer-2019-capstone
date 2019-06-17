@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import PlayerSearch from './PlayerSearch';
 
 class NavBar extends Component {
@@ -7,8 +8,9 @@ class NavBar extends Component {
 
         return (
             <div>
-                <a href='./Login'> Login </a>
-                <a href='./SignUp'> Sign Up </a>
+                <Link to='/'> Home </Link>
+                <Link to='/Login'> Login </Link>
+                <Link to='/SignUp'> Sign Up </Link>
                 <PlayerSearch />
             </div>
         );

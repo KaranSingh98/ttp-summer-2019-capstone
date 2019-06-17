@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import NavBar from './NavBar';
 
 class Login extends Component {
 
@@ -29,6 +30,7 @@ class Login extends Component {
     render() {
         return (
             <div>
+                <NavBar/>
 
                 <h1> Please Login Below </h1>
 

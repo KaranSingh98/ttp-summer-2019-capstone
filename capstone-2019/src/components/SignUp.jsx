@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import NavBar from './NavBar';
 
 class SignUp extends Component {
 
@@ -29,6 +30,9 @@ class SignUp extends Component {
 
         return (
             <div>
+
+                <NavBar/>
+
                 <h1> Please Sign Up Below </h1>
 
                 <form>
