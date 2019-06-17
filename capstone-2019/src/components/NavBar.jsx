@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PlayerSearch from './PlayerSearch';
 
 class NavBar extends Component {
 
@@ -8,9 +9,7 @@ class NavBar extends Component {
             <div>
                 <a href='./Login'> Login </a>
                 <a href='./SignUp'> Sign Up </a>
-                <form className='SearchBar'>
-                    <input type='text' name='player' placeholder='Search Player'/>
-                </form>
+                <PlayerSearch />
             </div>
         );
     }

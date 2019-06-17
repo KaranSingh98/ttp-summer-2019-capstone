@@ -6,7 +6,7 @@ import PlayerSearch from './components/PlayerSearch';
 
 function App() {
   return (
-    <PlayerSearch />
+    <Home />
   );
 }
 
