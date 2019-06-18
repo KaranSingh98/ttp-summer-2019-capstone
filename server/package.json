@@ -22,11 +22,8 @@
     "helmet": "^3.18.0",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
-<<<<<<< HEAD
     "passport": "^0.4.0",
-=======
     "pg": "^7.11.0",
->>>>>>> master
     "pgtools": "^0.3.0",
     "requirejs": "^2.3.6",
     "sequelize": "^5.8.9"
