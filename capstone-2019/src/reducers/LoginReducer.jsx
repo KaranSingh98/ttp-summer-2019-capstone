@@ -5,7 +5,7 @@ function loginReducer(state = {
         email: '',
         password: ''
     },
-    login: false
+    login: null
 }, action) {
 
     switch(action.type) {
@@ -13,9 +13,10 @@ function loginReducer(state = {
         case USER_LOGIN: {
             return {
                 ...state,
+                user: action.payload.email,
+                password: action.payload.password,
                 login: true
             };
-            console.log(state);
         }
         default:
             return state;

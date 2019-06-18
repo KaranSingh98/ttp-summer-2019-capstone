@@ -42,7 +42,7 @@ class SignUp extends Component {
             email: this.state.email,
             password: this.state.password
         };
-      console.log(newUser);
+
       this.props.createUser(newUser);
 
     }; // end of handleSubmit
@@ -62,7 +62,7 @@ class SignUp extends Component {
                     <input type='text' name='email' placeholder='Email'
                         onChange={this.handleChange}/> <br/>
                     <h2> Please Enter a Password </h2> <br/>
-                    <input type='text' name='password' placeholer='Password'
+                    <input type='password' name='password' placeholer='Password'
                         onChange={this.handleChange}/> <br/>
                 </form> <br/>
 
@@ -71,7 +71,7 @@ class SignUp extends Component {
                 </Link>
             </div>
         );
-        
+
     }; // end of render
 
 }; // end of SignUp class

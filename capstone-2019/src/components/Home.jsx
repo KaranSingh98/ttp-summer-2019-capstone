@@ -21,7 +21,7 @@ class Home extends Component {
                 <h1> Basketcase </h1>
                 <span> <NavBar /> </span>
 
-                !this.props.login && <h1> Please Login </h1>
+                {this.props.login ? <h1> WELCOME </h1> : <h1> PLEASE LOGIN </h1>}
             </div>
         );
     };

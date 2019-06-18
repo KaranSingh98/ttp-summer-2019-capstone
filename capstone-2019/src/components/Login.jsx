@@ -70,17 +70,13 @@ class Login extends Component {
                     <input type='text' name='email' placeholder='Email'
                         onChange={this.handleChange}/> <br/>
 
-                    <input type='text' name='password' placeholer='Password'
+                    <input type='password' name='password' placeholer='Password'
                         onChange={this.handleChange}/> <br/>
                 </form>
 
                 <button type='submit' onClick={this.handleSubmit}> Submit </button>
 
-                {this.props.login && <Redirect to='/'/>}
-                {
-                    !this.props.login &&
-                    <p> Try Again </p>
-                }
+                this.props.login && <Redirect to='/'/>
 
             </div>
         );
