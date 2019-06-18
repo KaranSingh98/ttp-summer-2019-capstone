@@ -4,7 +4,7 @@ function loginReducer(state = {
     user: {
         email: '',
         password: ''
-    },
+        },
     login: false
 }, action) {
 
@@ -13,7 +13,8 @@ function loginReducer(state = {
         case USER_LOGIN: {
             return {
                 ...state,
-                login: true
+                login: true,
+                user: action.user
             };
             console.log(state);
         }
