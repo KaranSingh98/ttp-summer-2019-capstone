@@ -1,15 +1,23 @@
+import axios from 'axios';
 export const CREATE_USER = "CREATE_USER";
 
+
 const createUser = (newUser) => {
-    return {
-        type: CREATE_USER,
-        payload: newUser
-    };
+  return {
+    type: CREATE_USER,
+    payload: newUser
+  };
 
 }; // end of createUser
 
-const createUserThunk = (newUser) =>(dispatch) => {
+export const createUserThunk = (newUser) => (dispatch) => {
 
-    // axios post call to user database
+	return axios
+		.post("http://localhost:5000/api/users", newUser)
+		.then(res => res.data)
+		.then(newUser => dispatch(createUser(newUser)));
+
+  //return dispatch(createUser(newUser));
+
 
 }; // end of createUserThunk

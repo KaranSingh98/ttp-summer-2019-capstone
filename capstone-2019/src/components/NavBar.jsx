@@ -1,19 +1,31 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import PlayerSearch from './PlayerSearch';
+
+const mapStates = (state) => {
+    return {
+        loggedIn: state.loginReducer.login
+    };
+};
 
 class NavBar extends Component {
+
+    constructor(props){
+        super(props);
+    }
 
     render() {
 
         return (
             <div>
-                <a href='./Login'> Login </a>
-                <a href='./SignUp'> Sign Up </a>
-                <form className='SearchBar'>
-                    <input type='text' name='player' placeholder='Search Player'/>
-                </form>
+                <Link to='/'> Home </Link>
+                <Link to='/Login'> Login </Link>
+                <Link to='/SignUp'> Sign Up </Link>
+                <PlayerSearch />
             </div>
         );
     }
 };
 
-export default NavBar;
+export default connect(mapStates, null)(NavBar);

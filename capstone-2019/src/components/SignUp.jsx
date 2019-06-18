@@ -1,4 +1,22 @@
 import React, {Component} from 'react';
+import NavBar from './NavBar';
+import {Link} from 'react-router-dom';
+import {createUserThunk} from '../actions/SignUpActions';
+import {connect} from 'react-redux';
+
+const mapStates = (state) => {
+    return {
+        user: state.user
+    };
+}; // end of mapStates
+
+const mapDispatch = (dispatch) => {
+    return {
+        createUser: (newUser) => {
+            dispatch(createUserThunk(newUser));
+        }
+    };
+}
 
 class SignUp extends Component {
 
@@ -13,14 +31,19 @@ class SignUp extends Component {
 
     handleChange = event => {
 
-        this.setState({ [event.target.name]: event.target.value })
+      this.setState({ [event.target.name]: event.target.value });
 
     }; // end of handleChange
 
 
     handleSubmit = () => {
 
-        // thunk call repsonsible for handling axios post call for user database
+        const newUser = {
+            email: this.state.email,
+            password: this.state.password
+        };
+      console.log(newUser);
+      this.props.createUser(newUser);
 
     }; // end of handleSubmit
 
@@ -29,6 +52,9 @@ class SignUp extends Component {
 
         return (
             <div>
+
+                <NavBar/>
+
                 <h1> Please Sign Up Below </h1>
 
                 <form>
@@ -40,11 +66,14 @@ class SignUp extends Component {
                         onChange={this.handleChange}/> <br/>
                 </form> <br/>
 
-                <button type='submit' onClick={this.handleSubmit}> Create Account </button>
+                <Link to='/'>
+                    <button type='submit' onClick={this.handleSubmit}> Create Account </button>
+                </Link>
             </div>
         );
+        
     }; // end of render
 
 }; // end of SignUp class
 
-export default SignUp;
+export default connect(mapStates, mapDispatch)(SignUp);
