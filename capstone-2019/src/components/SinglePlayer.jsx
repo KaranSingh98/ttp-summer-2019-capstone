@@ -9,10 +9,10 @@ import axios from 'axios';
 //result should display the stats
 
 class SinglePlayer extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
-			id: "237", //dummy data for now
+			id: this.props.match.params.id,
 			stats: ""
 		}
 	}
@@ -41,7 +41,8 @@ class SinglePlayer extends Component {
 
 		return(
 			<div>
-				{this.state.stats}
+			<h1>test</h1>
+				{this.state.id}
 			</div>
 		)
 	}
