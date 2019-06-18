@@ -31,14 +31,18 @@ class App extends Component {
             return <PlayerSearch/>
         };
 
+        const SinglePlayerComponent = () => {
+            return <SinglePlayer/>
+        }
+
         return (
 
             <Router>
                 <Route exact path='/' render={HomeComponent} />
                 <Route exact path='/login' render={LoginComponent} />
                 <Route exact path='/signUp' render={SignUpComponent} />
-                <Route exact path='/playerResults' render={PlayerSearchComponent} />
-                <Route exact path='/playerResults/:id' render={props => <SinglePlayer{...props} />} />
+                <Route exact path='/player/' render={SinglePlayerComponent}/>
+                <Route exact path='/player/:id' render={props => <SinglePlayer{...props} />} />
             </Router>
         );
     };
