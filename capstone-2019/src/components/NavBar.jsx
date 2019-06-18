@@ -1,8 +1,19 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import PlayerSearch from './PlayerSearch';
 
+const mapStates = (state) => {
+    return {
+        loggedIn: state.loginReducer.login
+    };
+};
+
 class NavBar extends Component {
+
+    constructor(props){
+        super(props);
+    }
 
     render() {
 
@@ -17,4 +28,4 @@ class NavBar extends Component {
     }
 };
 
-export default NavBar;
+export default connect(mapStates, null)(NavBar);
