@@ -26,6 +26,7 @@
     "pg": "^7.11.0",
     "pgtools": "^0.3.0",
     "requirejs": "^2.3.6",
-    "sequelize": "^5.8.9"
+    "save": "^2.4.0",
+    "sequelize": "^5.8.10"
   }
 }
