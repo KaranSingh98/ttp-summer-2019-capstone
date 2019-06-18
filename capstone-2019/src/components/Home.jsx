@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 const mapStates = (state) => {
     return {
-        login: state.loginReducer.login
+        user: state.loginReducer.user
     };
 };
 
@@ -21,7 +21,8 @@ class Home extends Component {
                 <h1> Basketcase </h1>
                 <span> <NavBar /> </span>
 
-                {this.props.login ? <h1> WELCOME </h1> : <h1> PLEASE LOGIN </h1>}
+                {this.props.user.id ? <h1> WELCOME </h1> : <h1> PLEASE LOGIN </h1>}
+
             </div>
         );
     };

@@ -5,7 +5,7 @@ import PlayerSearch from './PlayerSearch';
 
 const mapStates = (state) => {
     return {
-        login: state.loginReducer.login
+        user: state.loginReducer.user
     };
 };
 
@@ -13,7 +13,8 @@ class NavBar extends Component {
 
     constructor(props){
         super(props);
-    }
+
+    }; // end of contructor
 
     render() {
 
@@ -25,7 +26,9 @@ class NavBar extends Component {
                 <PlayerSearch />
             </div>
         );
-    }
-};
+
+    }; // end of render
+
+}; // end of NavBar c
 
 export default connect(mapStates, null)(NavBar);

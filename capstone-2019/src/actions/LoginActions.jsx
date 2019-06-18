@@ -1,38 +1,39 @@
 import axios from 'axios';
 
-export const USER_LOGIN = "USER_LOGIN";
+export const GET_USER = "GET_USER";
 
-const userLogin = (user) => {
 
-    console.log('user is ', user);
+const gotMe = (user) => ({
 
-    return {
-        type: USER_LOGIN,
-        payload: user
-    };
+    type: GET_USER,
+        user
 
-}; // end of userLogin
+}); // end of gotMe
 
-export const userLoginThunk = (user) => (dispatch) => {
 
-    return axios.get('http://localhost:5000/api/users/')
-        .then(res => {
+export const getMe = () => dispatch => {
+  return axios.get('http://localhost:5000/api/auth/me')
+    .then(res => res.data)
+    .then(user => dispatch(gotMe(user)))
+    .catch(err => console.log(err));
 
-            const users = res.data;
-            let found = false;
+}; // end of getMe
 
-            console.log('users is', users);
 
-            for(let i = 0; i < users.length; i++){
-                if(users[i].email == user.email && users[i].password == user.password)
-                    found = true;
-            }
+export const userLogin = (formData) => (dispatch) => {
 
-            if(found)
-                dispatch(userLogin(user));
-            else
-                return;
-        })
+    return axios.put('http://localhost:5000/api/auth/login', formData)
+        .then(res => res.data)
+        .then(user => dispatch(gotMe(user)))
         .catch(err => console.log(err));
 
 }; // end of userLoginThunk
+
+
+export const userLogOut= () => (dispatch) => {
+
+    return axios.delete('http://localhost:5000/api/auth/logout')
+        .then(() => dispatch(gotMe({})))
+        .catch(err => console.log(err));
+
+}; // end of userLogOut

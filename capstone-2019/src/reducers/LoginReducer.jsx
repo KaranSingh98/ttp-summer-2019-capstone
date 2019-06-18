@@ -1,21 +1,15 @@
-import {USER_LOGIN} from '../actions/LoginActions';
+import {GET_USER} from '../actions/LoginActions';
 
 function loginReducer(state = {
-    user: {
-        email: '',
-        password: ''
-    },
-    login: null
+    user: {}
 }, action) {
 
     switch(action.type) {
 
-        case USER_LOGIN: {
+        case GET_USER: {
             return {
                 ...state,
-                user: action.payload.email,
-                password: action.payload.password,
-                login: true
+                user: action.user
             };
         }
         default:
