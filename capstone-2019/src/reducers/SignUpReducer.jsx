@@ -1,15 +1,12 @@
 import {CREATE_USER} from '../actions/SignUpActions';
 
 function signUpReducer(state = {
-    user: {
-        email: 'karansingh98123@gmail.com',
-        password: 'password'
-    }
+    user: {}
 }, action) {
 
     switch(action.type) {
+        
         case CREATE_USER: {
-            console.log(action.payload);
             return action.payload;
         }
         default:

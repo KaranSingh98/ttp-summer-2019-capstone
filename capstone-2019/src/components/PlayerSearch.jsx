@@ -4,6 +4,8 @@
 */
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
 
 class PlayerSearch extends Component {
 
@@ -33,14 +35,11 @@ class PlayerSearch extends Component {
 	}
 
 
-	handeSubmit = (event) => {
-		//this.fetchSearch(this.state.query)
-
-	};
-
 	handleChange = (event) => {
 
-		if(event.target.value == '')
+		// if the search bar is empty request gibberish from the api, so that
+		// the api is not sending its default data
+		if(event.target.value === '')
 			this.fetchSearch('ababababababab');
 		else
         	this.fetchSearch(event.target.value);
@@ -52,22 +51,24 @@ class PlayerSearch extends Component {
 
 		const playerObj = this.state.results;
 		const list = playerObj.map((playerObj) =>
+			<Link to ={`/player/${playerObj.id}`}>
 			<li key={playerObj.id}> {playerObj.first_name + "\n"} {playerObj.last_name + "\n" } </li>
+			</Link>
 			);
 
-		return(
+		return (
+			<div>
+				<form name='PlayerSearch'>
+            		<input type='text' name='query' placeholder='Search for a player' onChange={this.handleChange}/>
+        		</form>
 
-		<div>
-		<form name='PlayerSearch'>
-            <input type='text' name='query' placeholder='Search for a player' onChange={this.handleChange}/>
-        </form>
-              <button type="submit" onClick={this.handleSubmit}> Submit </button>
-              <ul>
-				{list}
-			</ul>
-      </div>
+        		<ul>
+					{list}
+				</ul>
+      		</div>
 
-  			)}
+  		);
+	}
 };
 
 export default PlayerSearch;
