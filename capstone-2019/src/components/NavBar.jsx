@@ -17,7 +17,7 @@ const mapDispatch = (dispatch) => {
         logOut: () => {
             dispatch(userLogOut())
         }
-    }
+    };
 
 }; // end of mapDispatch
 
@@ -39,22 +39,25 @@ class NavBar extends Component {
         if(this.props.user.id) {
             return (
                 <div>
-                    <Link to='/'> Home </Link>
-                    <Link to='/' onClick={this.handleLogOut}>
-                        Logout
-                    </Link>
-                    <PlayerSearch />
+                    <nav>
+                        <Link to='/'> Home </Link>
+                        <Link to='/' onClick={this.handleLogOut}>
+                            Logout
+                        </Link>
+                        <PlayerSearch />
+                    </nav>
                 </div>
             );
         }
         else {
-
             return (
                 <div>
-                    <Link to='/'> Home </Link>
-                    <Link to='/Login'> Login </Link>
-                    <Link to ='/SignUp'> Sign Up </Link>
-                    <PlayerSearch />
+                    <nav>
+                        <Link to='/'> Home </Link>
+                        <Link to='/Login'> Login </Link>
+                        <Link to ='/SignUp'> Sign Up </Link>
+                        <PlayerSearch />
+                    </nav>
                 </div>
             );
 
