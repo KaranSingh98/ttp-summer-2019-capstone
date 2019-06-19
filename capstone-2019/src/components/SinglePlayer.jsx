@@ -13,7 +13,7 @@ class SinglePlayer extends Component {
 	constructor() {
 		super()
 		this.state = {
-			id: "237", //dummy data for now
+			id: this.props.params.id, //no longer dummy data
 			stats: [], //state for player game info per game
 			gameID: "48760", //dummy gameID
 
