@@ -35,11 +35,6 @@ class PlayerSearch extends Component {
 	}
 
 
-	handeSubmit = (event) => {
-		//this.fetchSearch(this.state.query)
-
-	};
-
 	handleChange = (event) => {
 
 		// if the search bar is empty request gibberish from the api, so that
@@ -61,18 +56,19 @@ class PlayerSearch extends Component {
 			</Link>
 			);
 
-		return(
-		<div>
-		<form name='PlayerSearch'>
-            <input type='text' name='query' placeholder='Search for a player' onChange={this.handleChange}/>
-        </form>
-              <button type="submit" onClick={this.handleSubmit}> Submit </button>
-              <ul>
-				{list}
-			</ul>
-      </div>
+		return (
+			<div>
+				<form name='PlayerSearch'>
+            		<input type='text' name='query' placeholder='Search for a player' onChange={this.handleChange}/>
+        		</form>
 
-  			)}
+        		<ul>
+					{list}
+				</ul>
+      		</div>
+
+  		);
+	}
 };
 
 export default PlayerSearch;
