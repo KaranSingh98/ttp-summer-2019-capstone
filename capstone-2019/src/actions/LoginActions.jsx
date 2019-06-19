@@ -11,7 +11,7 @@ const gotMe = (user) => ({
 }); // end of gotMe
 
 
-export const getMe = () => dispatch => {
+export const getMe = () => (dispatch) => {
   return axios.get('http://localhost:5000/api/auth/me')
     .then(res => res.data)
     .then(user => dispatch(gotMe(user)))
@@ -30,7 +30,7 @@ export const userLogin = (formData) => (dispatch) => {
 }; // end of userLoginThunk
 
 
-export const userLogOut= () => (dispatch) => {
+export const userLogOut = () => (dispatch) => {
 
     return axios.delete('http://localhost:5000/api/auth/logout')
         .then(() => dispatch(gotMe({})))

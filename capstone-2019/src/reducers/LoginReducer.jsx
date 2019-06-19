@@ -7,6 +7,7 @@ function loginReducer(state = {
     switch(action.type) {
 
         case GET_USER: {
+
             return {
                 ...state,
                 user: action.user
@@ -16,6 +17,6 @@ function loginReducer(state = {
             return state;
     };
 
-}; // end of  loginReducer
+}; // end of loginReducer
 
 export default loginReducer;

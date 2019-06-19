@@ -1,13 +1,25 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {userLogOut} from '../actions/LoginActions';
 import PlayerSearch from './PlayerSearch';
 
 const mapStates = (state) => {
     return {
         user: state.loginReducer.user
     };
-};
+
+}; // end of mapStates
+
+
+const mapDispatch = (dispatch) => {
+    return {
+        logOut: () => {
+            dispatch(userLogOut())
+        }
+    }
+
+}; // end of mapDispatch
 
 class NavBar extends Component {
 
@@ -16,19 +28,40 @@ class NavBar extends Component {
 
     }; // end of contructor
 
+    handleLogOut = () => {
+
+        this.props.logOut();
+
+    }; // end of handleLogOut
+
     render() {
 
-        return (
-            <div>
-                <a href='/'> Home </a>
-                <a href='/Login'> Login </a>
-                <a href='/SignUp'> Sign Up </a>
-                <PlayerSearch />
-            </div>
-        );
+        if(this.props.user.id) {
+            return (
+                <div>
+                    <Link to='/'> Home </Link>
+                    <Link to='/' onClick={this.handleLogOut}>
+                        Logout
+                    </Link>
+                    <PlayerSearch />
+                </div>
+            );
+        }
+        else {
+
+            return (
+                <div>
+                    <Link to='/'> Home </Link>
+                    <Link to='/Login'> Login </Link>
+                    <Link to ='/SignUp'> Sign Up </Link>
+                    <PlayerSearch />
+                </div>
+            );
+
+        }
 
     }; // end of render
 
-}; // end of NavBar c
+}; // end of NavBar
 
-export default connect(mapStates, null)(NavBar);
+export default connect(mapStates, mapDispatch)(NavBar);

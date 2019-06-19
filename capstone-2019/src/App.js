@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import {Route, BrowserRouter as Router} from 'react-router-dom';
+import {Route, BrowserRouter as Router, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getMe} from './actions/LoginActions';
+import store from './Store';
 import Home from './components/Home';
 import PlayerSearch from './components/PlayerSearch';
 import Login from './components/Login';
@@ -9,7 +12,18 @@ import SinglePlayer from './components/SinglePlayer';
 
 class App extends Component {
 
+    constructor(props){
+        super(props);
+    };
+
+    componentDidMount () {
+        //console.log(this.props);
+        this.props.intializeData()
+    };
+
     render() {
+
+        //console.log(this.props);
 
         const HomeComponent = () => {
             return <Home/>
@@ -34,14 +48,23 @@ class App extends Component {
         return (
 
             <Router>
-                <Route exact path='/' render={HomeComponent} />
-                <Route exact path='/login' render={LoginComponent} />
-                <Route exact path='/signUp' render={SignUpComponent} />
-                <Route exact path='/playerResults' render={PlayerSearchComponent} />
+                <Route exact path='/' component={Home} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/signUp' component={SignUp} />
+                <Route exact path='/playerResults' component={PlayerSearch} />
                 <Route exact path='/playerResults/:id' render={props => <SinglePlayer{...props} />} />
             </Router>
         );
     };
 };
 
-export default App;
+const mapDispatch = (dispatch) => {
+
+    return {
+        intializeData: () => {
+            dispatch(getMe())
+        }
+    }
+};
+
+export default connect(null, mapDispatch)(App);

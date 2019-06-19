@@ -57,12 +57,9 @@ class SignUp extends Component {
                 <NavBar/>
 
                 <h1> Please Sign Up Below </h1>
-                
+
                 <p>
-                    If you already have an account, click here to
-                    <Link to='/Login'>
-                        login
-                    </Link>
+                    If you already have an account, click here to <Link to='/Login'> login </Link>
                 </p>
 
                 <form>

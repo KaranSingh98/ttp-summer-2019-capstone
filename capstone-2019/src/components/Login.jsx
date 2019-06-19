@@ -17,10 +17,9 @@ const mapDispatch = (dispatch) => {
 
     return {
         userLogin: (user) => {
-            dispatch(userLogin(user));
+            dispatch(userLogin(user))
         }
-    };
-
+    }
 }; // end of mapDispatch
 
 
@@ -74,6 +73,8 @@ class Login extends Component {
                 </form>
 
                 <button type='submit' onClick={this.handleSubmit}> Submit </button>
+
+                {this.props.user.id && <Redirect to='/' />}
 
             </div>
         );
