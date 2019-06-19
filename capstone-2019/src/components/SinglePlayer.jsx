@@ -60,7 +60,7 @@ class SinglePlayer extends Component {
 			<div>
 				<button onClick={
 					() =>{this.fetchSinglePlayerStats();}
-				}>Lebron</button>
+				}>Player</button>
 				
 				{console.log(this.state.games, "games")}	
 				
