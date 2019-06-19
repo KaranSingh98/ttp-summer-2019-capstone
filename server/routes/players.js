@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const bodyParser = require('body-parser');
-const Player=require("../database/models/player.js");
+const { User, Player } = require('../database/models');
 const axios=require("axios");
 
 router.use(bodyParser.json());
@@ -51,6 +51,19 @@ router.get("/:id",  async (req, res, next) => {
   }
 });
 
+router.get('/:id/users', async(req,res,next) => {
+
+  try{const players  = await Player.findAll({where: {
+    id: req.params.id,
+  },include: [User] });
+      const player = await Player.findAll();
+      res.json(players[0].users);
+     }
+  catch (error) {
+    next(error);
+  }
+
+});
 
 
 module.exports = router;

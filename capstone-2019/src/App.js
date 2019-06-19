@@ -45,6 +45,10 @@ class App extends Component {
             return <PlayerSearch/>
         };
 
+        const SinglePlayerComponent = () => {
+            return <SinglePlayer/>
+        }
+
         return (
 
             <Router>
