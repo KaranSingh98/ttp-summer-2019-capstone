@@ -42,7 +42,9 @@ class PlayerSearch extends Component {
 
 	handleChange = (event) => {
 
-		if(event.target.value == '')
+		// if the search bar is empty request gibberish from the api, so that
+		// the api is not sending its default data
+		if(event.target.value === '')
 			this.fetchSearch('ababababababab');
 		else
         	this.fetchSearch(event.target.value);
