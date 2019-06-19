@@ -1,4 +1,4 @@
-import {ADD_FAVORITE, DELETE_FAVORITE,FETCH_FAVORITES} from '../actions/FavoritesActions';
+import {ADD_FAVORITE, DELETE_FAVORITE, FETCH_FAVORITES} from '../actions/FavoritesActions';
 
 // const initialState = [];
 
@@ -11,7 +11,11 @@ function favoriteReducer(state = [], action)
 		case ADD_FAVORITE:
 			return [...state, action.payload.playerId]
 		case DELETE_FAVORITE:
-			return state.favorites.filter(favorites => favorites !== action.payload)
+			console.log(action.payload);
+			return state = state.filter(state => state !== action.payload.playerId)
+		case FETCH_FAVORITES:
+			console.log(action.payload)
+			return[...state, action.payload.playerId]
 	default:
 		return state
 }

@@ -20,11 +20,15 @@ class Favorites extends Component {
 	//	console.log("mountain")
 		this.props.addFavorite(238);
 		this.props.addFavorite(230);
+		this.props.addFavorite(221);
+		this.props.addFavorite(228);
+
+		this.props.deleteFavorite(228);
+		this.props.deleteFavorite(221);
+		//this.props.fetchFavorites(1);
 	}
 
 	render() {
-		// this.props.addFavorite(238);
-		console.log(this.props.favorites);
 
 		return (
 			<div>
@@ -34,7 +38,6 @@ class Favorites extends Component {
 			</div>
 		)
 	}
-
 };
 
 
