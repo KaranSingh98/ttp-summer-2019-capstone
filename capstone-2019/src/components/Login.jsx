@@ -2,13 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import NavBar from './NavBar';
-import {userLoginThunk} from '../actions/LoginActions';
+import {userLogin} from '../actions/LoginActions';
 
 
 const mapStates = (state) => {
     return {
-        user: state.loginReducer.user,
-        login: state.loginReducer.login
+        user: state.loginReducer.user
     };
 
 }; // end of mapStates
@@ -18,10 +17,9 @@ const mapDispatch = (dispatch) => {
 
     return {
         userLogin: (user) => {
-            dispatch(userLoginThunk(user));
+            dispatch(userLogin(user))
         }
-    };
-
+    }
 }; // end of mapDispatch
 
 
@@ -70,17 +68,13 @@ class Login extends Component {
                     <input type='text' name='email' placeholder='Email'
                         onChange={this.handleChange}/> <br/>
 
-                    <input type='text' name='password' placeholer='Password'
+                    <input type='password' name='password' placeholder='Password'
                         onChange={this.handleChange}/> <br/>
                 </form>
 
                 <button type='submit' onClick={this.handleSubmit}> Submit </button>
 
-                {this.props.login && <Redirect to='/'/>}
-                {
-                    !this.props.login &&
-                    <p> Try Again </p>
-                }
+                {this.props.user.id && <Redirect to='/' />}
 
             </div>
         );

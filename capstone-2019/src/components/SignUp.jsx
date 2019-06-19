@@ -42,7 +42,7 @@ class SignUp extends Component {
             email: this.state.email,
             password: this.state.password
         };
-      console.log(newUser);
+
       this.props.createUser(newUser);
 
     }; // end of handleSubmit
@@ -51,18 +51,23 @@ class SignUp extends Component {
     render() {
 
         return (
+
             <div>
 
                 <NavBar/>
 
                 <h1> Please Sign Up Below </h1>
 
+                <p>
+                    If you already have an account, click here to <Link to='/Login'> login </Link>
+                </p>
+
                 <form>
                     <h2> Please Enter Your Email </h2> <br/>
                     <input type='text' name='email' placeholder='Email'
                         onChange={this.handleChange}/> <br/>
                     <h2> Please Enter a Password </h2> <br/>
-                    <input type='text' name='password' placeholer='Password'
+                    <input type='password' name='password' placeholder='Password'
                         onChange={this.handleChange}/> <br/>
                 </form> <br/>
 
@@ -71,7 +76,7 @@ class SignUp extends Component {
                 </Link>
             </div>
         );
-        
+
     }; // end of render
 
 }; // end of SignUp class
