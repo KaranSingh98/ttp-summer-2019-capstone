@@ -10,8 +10,8 @@ class SinglePlayer extends Component {
 		this.state = {
 			id: this.props.params.id, //no longer dummy data
 			stats: [], //state for player game info per game
-			gameID: "48760", //dummy gameID
-
+			info:[], //player info
+			gameID: "48760" //dummy gameID
 		}
 	}
 
@@ -44,6 +44,19 @@ class SinglePlayer extends Component {
 		})
 	};
 
+	fetchPlayerInformation = () => {
+		const url = "https://www.balldontlie.io/api/v1/players/"
+
+		axios.get(url + this.state.id)
+			.then(response => {
+				console.log(response)
+				let result = response.data
+				this.setState({info: [result]});
+
+			})
+
+	}
+
 	//instead of double axios call to get game info from player stat
 	//have a seperate state that stores all the teams with there approriate team ID
 
@@ -54,21 +67,25 @@ class SinglePlayer extends Component {
 		return(
 			<div>
 
-				{this.fetchSinglePlayerStats()}
-				
-				{console.log(this.state.games, "games")}	
-				
+				{this.fetchSinglePlayerStats()} {/* fetches player stats for games*/}
+				{this.fetchPlayerInformation()} {/* fetches general player information */}
+
+				{this.state.info.map(pass => 
+					<div>
+						
+						{pass.first_name} {pass.last_name} <br></br>
+						Height: {pass.height_feet}' {pass.height_inches}" <br></br>
+						Weight: {pass.weight_pounds} <br></br>
+						<br></br>
+						Team: {pass.team.full_name} | {pass.team.conference} Conference <br></br>
+						Position: {pass.position} <br></br>
+
+					</div>
+				)}
 
 				{this.state.stats.map(pass => 
 					(<div>
-						{/*
-							https://www.balldontlie.io/api/v1/games/<ID>
-							Need to passed by Database since it uses ID
-							Home team vs Visitor team
-							Score: Pts (Home) vs Pts (Visitor)
-							UPDATE: Just call again with a different state
-							To display Lebron stats, make another axios call and skip player after looping once
-						*/}
+					
 						<br></br>
 						Game Date: {pass.game.date} <br></br>
 						{pass.game.homeInfo.full_name}:	{pass.game.home_team_score} <br></br>
@@ -76,8 +93,10 @@ class SinglePlayer extends Component {
 						Points: {pass.pts}<br></br>
 						Rebounds: {pass.dreb}<br></br>
 						Assists: {pass.ast}<br></br>
-						Field Goal %: {pass.fg_pct}<br></br>  
+						Field Goal %: {pass.fg_pct}<br></br>
 						Blocks: {pass.blk}<br></br>
+						Free Throw %: {pass.ft_pct} <br></br>
+
 					</div>)
 				)}
 			</div>
