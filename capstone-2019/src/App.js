@@ -9,6 +9,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import PlayerResults from './components/PlayerResults';
 import SinglePlayer from './components/SinglePlayer';
+import Favorites from './components/Favorites';
 
 class App extends Component {
 
@@ -49,6 +50,11 @@ class App extends Component {
             return <SinglePlayer/>
         }
 
+        const FavoritesComponent = () => {
+            return <Favorites/>
+        }
+
+
         return (
 
             <Router>
@@ -57,6 +63,7 @@ class App extends Component {
                 <Route exact path='/signUp' component={SignUp} />
                 <Route exact path='/player' component={PlayerSearch} />
                 <Route exact path='/player/:id' render={props => <SinglePlayer{...props} />} />
+                <Route exact path='/favorites' component={FavoritesComponent} />
             </Router>
         );
     };
