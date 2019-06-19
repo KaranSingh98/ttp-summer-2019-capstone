@@ -92,11 +92,8 @@ router.post('/:id/players/:playerId', async (req,res,next) => {
               res.status(201).json({playerId:player.id, userId: user.id});
               player.addUser(user);
             });
-
-
         })
         .catch( (error) => error);
-
     }
   } catch (error) {
     next(error);
@@ -117,17 +114,24 @@ router.delete('/:id/players/:playerId', async (req,res,next) => {
 });
 
 router.get('/:id/favorites', async(req,res,next) => {
-
-  try{const users = await User.findAll({where: {
+  /*
+    try{const users = await User.findAll({where: {
     id: req.params.id,
-  },include: [Player] });
-      const player = await Player.findAll();
-      res.json(users[0].players);
-     }
-  catch (error) {
+    },include: [Player] });
+    res.json(users[0].players);
+    }
+    catch (error) {
+    next(error);
+    }*/
+  try{
+    const user = await User.findByPk(req.params.id);
+    res.json(await user.getPlayers());
+  }
+  catch(error ){
     next(error);
   }
 
 });
+
 
 module.exports = router;

@@ -6,18 +6,18 @@ const axios=require("axios");
 router.use(bodyParser.json());
 
 async function fetchPlayerApi(query){
-    let url = "https://www.balldontlie.io/api/v1/players/" + query;
+  let url = "https://www.balldontlie.io/api/v1/players/" + query;
 
-    try
-    {
-      let data =  await axios.get(url);
-      console.log("making an api call");
-      return (data.data);
-    }
-    catch(err)
-    {
-      console.log(err);
-    }
+  try
+  {
+    let data =  await axios.get(url);
+    console.log("making an api call");
+    return (data.data);
+  }
+  catch(err)
+  {
+    console.log(err);
+  }
 };
 
 
@@ -36,7 +36,7 @@ router.get("/:id",  async (req, res, next) => {
       res.json(player);
     } else {
       fetchPlayerApi(req.params.id)
-        //.then( (data) => console.log(data) )
+      //.then( (data) => console.log(data) )
         .then( (data) => {
           const {id, first_name, last_name, position, team:{name, id:team_id} } = data;
           Player.create( {id, first_name, last_name, position, team_name:name, team_id} )
@@ -50,19 +50,26 @@ router.get("/:id",  async (req, res, next) => {
     next(error);
   }
 });
-
-router.get('/:id/users', async(req,res,next) => {
-
-  try{const players  = await Player.findAll({where: {
+/************ FAVORITES ***************/
+router.get('/:id/favorites', async(req,res,next) => {
+  /*
+    try{
+    const players  = await Player.findAll({where: {
     id: req.params.id,
-  },include: [User] });
-      const player = await Player.findAll();
-      res.json(players[0].users);
-     }
-  catch (error) {
+    },include: [User] });
+    res.json(players[0].users);
+    }
+    catch (error) {
+    next(error);
+    }
+  */
+  try{
+    const player = await Player.findByPk(req.params.id);
+    res.json(await player.getUsers());
+  }
+  catch(error ){
     next(error);
   }
-
 });
 
 
