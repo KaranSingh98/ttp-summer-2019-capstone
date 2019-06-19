@@ -6,7 +6,6 @@ const Player  = db.define("player", {
     type: Sequelize.INTEGER,
     allowNull: false,
     primaryKey: true,
-    autoIncrement: true
   },
   first_name: {
     type: Sequelize.STRING,

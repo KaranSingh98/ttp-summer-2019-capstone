@@ -36,7 +36,7 @@ const syncDatabase = () => {
   }
   else {
     console.log('As a reminder, the forced synchronization option is on');
-    db.sync({ force: true })
+    db.sync()
       .catch(err => {
         if (err.name === 'SequelizeConnectionError') {
           createLocalDatabase();
@@ -53,12 +53,12 @@ const app = express();
 
 // A helper function to create our app with configurations and middleware;
 const configureApp = () => {
-  app.use(helmet());
+  //app.use(helmet());
   app.use(logger('dev'));
   app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
-  app.use(compression());
-  app.use(cookieParser());
+  app.use(express.urlencoded({ extended: true }));
+  //app.use(compression());
+ // app.use(cookieParser());
   // Session middleware
   app.use(session({
     secret: 'This is not a very secure secret...',
@@ -83,8 +83,6 @@ const configureApp = () => {
       done(err);
     }
   });
-
-
 
   //cors
   app.use(cors());
