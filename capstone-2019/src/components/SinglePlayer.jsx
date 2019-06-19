@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {teamObject} from './teams.jsx'
+import {teamObject} from './teams'
 //import {connect} from 'react-redux';
 
 //database and redux store will handle calling this component
@@ -58,9 +58,8 @@ class SinglePlayer extends Component {
 
 		return(
 			<div>
-				<button onClick={
-					() =>{this.fetchSinglePlayerStats();}
-				}>Player</button>
+			
+				{this.fetchSinglePlayerStats()}
 				
 				{console.log(this.state.games, "games")}	
 				
