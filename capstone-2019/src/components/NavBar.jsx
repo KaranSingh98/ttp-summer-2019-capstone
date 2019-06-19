@@ -17,7 +17,7 @@ const mapDispatch = (dispatch) => {
         logOut: () => {
             dispatch(userLogOut())
         }
-    }
+    };
 
 }; // end of mapDispatch
 
@@ -48,7 +48,6 @@ class NavBar extends Component {
             );
         }
         else {
-
             return (
                 <div>
                     <Link to='/'> Home </Link>
