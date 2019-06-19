@@ -25,7 +25,7 @@ class Favorites extends Component {
 
 		this.props.deleteFavorite(228);
 		this.props.deleteFavorite(221);
-		//this.props.fetchFavorites(1);
+		this.props.fetchFavorites(1);
 	}
 
 	render() {

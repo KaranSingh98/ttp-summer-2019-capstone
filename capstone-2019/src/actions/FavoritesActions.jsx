@@ -18,10 +18,10 @@ const deleteFavorite = (playerID) => {
 	}
 }
 
-const fetchFavorites = () => {
+const fetchFavorites = (data) => {
 	return {
 	type: FETCH_FAVORITES,
-	payload: {}
+	payload: data
 	}
 }
 // thunks
@@ -43,11 +43,11 @@ export const deleteFavoriteThunk = (playerID) => (dispatch) => {
 	.catch(err => console.log(err));
 };
 
-export const fetchFavoritesThunk = (userID) => (dispatch) => {
+export const fetchFavoritesThunk = (data) => (dispatch) => {
 	return axios
 	.get('http://localhost:5000/api/users/1/favorites/')
 	.then(res => res.data)
-	.then(playerID => dispatch(fetchFavorites(userID)))
+	.then(data => dispatch(fetchFavorites(data)))
 	.catch(err => console.log(err));
 
 

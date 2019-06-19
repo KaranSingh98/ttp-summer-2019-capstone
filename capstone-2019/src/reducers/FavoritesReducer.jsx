@@ -11,11 +11,11 @@ function favoriteReducer(state = [], action)
 		case ADD_FAVORITE:
 			return [...state, action.payload.playerId]
 		case DELETE_FAVORITE:
-			console.log(action.payload);
 			return state = state.filter(state => state !== action.payload.playerId)
 		case FETCH_FAVORITES:
-			console.log(action.payload)
-			return[...state, action.payload.playerId]
+			//console.log(action.payload);
+			let newState = action.payload.map(({id}) => id);
+			return newState;
 	default:
 		return state
 }
