@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {teamObject} from './teams'
+import {teamObject} from './teams';
 
 //passes in ID through react-routing, which will be used as a state and passes as a parameter
 
 class SinglePlayer extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props);
 		this.state = {
 			id: this.props.match.params.id, //no longer dummy data
 			stats: [], //state for player game info per game
