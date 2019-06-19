@@ -16,18 +16,23 @@ class Favorites extends Component {
 		}
 	}
 
-
+	componentDidMount() {
+	//	console.log("mountain")
+		this.props.addFavorite(238);
+		this.props.addFavorite(230);
+	}
 
 	render() {
-		this.props.addFavorite(237);
-		console.log(this.props.favorites)
+		// this.props.addFavorite(238);
+		console.log(this.props.favorites);
 
 		return (
 			<div>
 			<h1>Favorites</h1>
-			{this.props.favorites}
-			</div> 
-			)
+			{/* this.props.favorites ? "hello" : "bye" */}
+			{/*this.props.favorites[0]*/}
+			</div>
+		)
 	}
 
 };
@@ -36,8 +41,9 @@ class Favorites extends Component {
 
 
 const mapStates = (state) => {
+	//console.log("my redux store", state)
     return {
-        favorites: state.favorites,
+        favorites: state.favoriteReducer,
         user: state.loginReducer.user
     };
 };

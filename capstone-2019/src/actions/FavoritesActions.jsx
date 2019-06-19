@@ -1,26 +1,26 @@
 import axios from 'axios';
-export const ADD_FAVORTIE = 'ADD_FAVORTIE';
+export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const DELETE_FAVORITE = 'DELETE_FAVORITE';
 export const FETCH_FAVORITES = 'FETCH_FAVORITES'
 
 
 const addFavorite = (playerID) => {
 	return {
-		type: ADD_FAVORTIE,
+		type: ADD_FAVORITE,
 		payload: playerID 
 	}
 };
 
 const deleteFavorite = (playerID) => {
 	return {
-		type:DELETE_FAVORITE,
+		type: DELETE_FAVORITE,
 		payload: playerID
 	}
 }
 
 const fetchFavorites = () => {
 	return {
-	type:FETCH_FAVORITES
+	type: FETCH_FAVORITES
 	}
 }
 // thunks
