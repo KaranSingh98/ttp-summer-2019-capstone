@@ -16,10 +16,16 @@ class Favorites extends Component {
 		}
 	}
 
+
+
 	render() {
+		this.props.addFavorite(237);
+		console.log(this.props.favorites)
+
 		return (
 			<div>
-			<h1>test</h1>
+			<h1>Favorites</h1>
+			{this.props.favorites}
 			</div> 
 			)
 	}
@@ -31,14 +37,15 @@ class Favorites extends Component {
 
 const mapStates = (state) => {
     return {
-        favorites: state.favorites
+        favorites: state.favorites,
+        user: state.loginReducer.user
     };
 };
 
 const mapDispatch = (dispatch) => ({
-        addFavorite: (playerID) => dispatch(addFavorite(playerID)),
-        deleteFavorite: (playerID) => dispatch(deleteFavorite(playerID)),
-        fetchFavorites: () => dispatch(fetchFavorites())
+        addFavorite: (playerID) => dispatch(addFavoriteThunk(playerID)),
+        deleteFavorite: (playerID) => dispatch(deleteFavoriteThunk(playerID)),
+        fetchFavorites: (userID) => dispatch(fetchFavoritesThunk(userID))
 
      
 });

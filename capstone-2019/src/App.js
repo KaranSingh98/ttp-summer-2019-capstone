@@ -61,8 +61,9 @@ class App extends Component {
                 <Route exact path='/' component={Home} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/signUp' component={SignUp} />
-                <Route exact path='/playerResults' component={PlayerSearch} />
-                <Route exact path='/playerResults/:id' render={props => <SinglePlayer{...props} />} />
+                <Route exact path='/player' component={PlayerSearch} />
+                <Route exact path='/player/:id' render={props => <SinglePlayer{...props} />} />
+                <Route exact path='/favorites' component={FavoritesComponent} />
             </Router>
         );
     };
