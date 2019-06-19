@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {teamObject} from './teams.js'
+import {teamObject} from './teams.jsx'
 //import {connect} from 'react-redux';
 
 //database and redux store will handle calling this component
