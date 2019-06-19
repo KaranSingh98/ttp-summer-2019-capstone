@@ -62,7 +62,7 @@ class SignUp extends Component {
                     If you already have an account, click here to <Link to='/Login'> login </Link>
                 </p>
 
-                <form>
+                <form name="SignUp">
                     <h2> Please Enter Your Email </h2> <br/>
                     <input type='text' name='email' placeholder='Email'
                         onChange={this.handleChange}/> <br/>
