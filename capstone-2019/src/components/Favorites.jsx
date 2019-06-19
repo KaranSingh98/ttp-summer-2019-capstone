@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import NavBar from './NavBar';
 import {Link} from 'react-router-dom';
-// will need to import thunk once created
+import {addFavoriteThunk, deleteFavoriteThunk, fetchFavoritesThunk} from '../actions/FavoritesActions';
 import {connect} from 'react-redux';
 
 
@@ -11,13 +11,17 @@ class Favorites extends Component {
 
 		this.state = {
 			// array of playerIds that a user 
-			// has favorited 
+			// has favorited fetched from db on a session
 			favorites: []
 		}
 	}
 
 	render() {
-		return ()
+		return (
+			<div>
+			<h1>test</h1>
+			</div> 
+			)
 	}
 
 };
@@ -29,15 +33,14 @@ const mapStates = (state) => {
     return {
         favorites: state.favorites
     };
-}; // end of mapStates
+};
 
-const mapDispatch = (dispatch) => {
-    return {
-        createUser: (newUser) => {
-            dispatch(createUserThunk(newUser));
-        }
+const mapDispatch = (dispatch) => ({
+        addFavorite: (playerID) => dispatch(addFavorite(playerID)),
+        deleteFavorite: (playerID) => dispatch(deleteFavorite(playerID)),
+        fetchFavorites: () => dispatch(fetchFavorites())
+
      
-    };
-}
+});
 
 export default connect(mapStates,mapDispatch)(Favorites);

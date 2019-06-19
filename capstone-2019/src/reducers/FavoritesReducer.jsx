@@ -1,4 +1,4 @@
-import {ADD_FAVORITE, DELETE_FAVORITE} from '../actions/SignUpActions';
+import {ADD_FAVORITE, DELETE_FAVORITE,FETCH_FAVORITES} from '../actions/SignUpActions';
 
 const initialState = {
 	favorites:[]
@@ -18,6 +18,10 @@ function favoriteReducer(state = initialState, action {
 				...state,
 				favorites: state.favoritess.filter(favorites => favorites !== action.payload),
 			}
+		}
+		case FETCH_FAVORITES: {
+			...state,
+			favorites: action.payload
 		}
 	}
 })

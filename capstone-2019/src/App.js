@@ -6,6 +6,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import PlayerResults from './components/PlayerResults';
 import SinglePlayer from './components/SinglePlayer';
+import Favorites from './components/Favorites';
 
 class App extends Component {
 
@@ -34,6 +35,11 @@ class App extends Component {
         const SinglePlayerComponent = () => {
             return <SinglePlayer/>
         }
+
+        const FavoritesComponent = () => {
+            return <Favorites/>
+        }
+
 
         return (
 
