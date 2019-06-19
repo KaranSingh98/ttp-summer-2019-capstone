@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {teamObject} from './teams'
-//import {connect} from 'react-redux';
 
-//database and redux store will handle calling this component
-//this should be called as many times as a player needs to be called
-//need to get player name/ID from SearchResult component
-//take ID and fetch stats for player from latest season
-//result should display the stats
+//passes in ID through react-routing, which will be used as a state and passes as a parameter
 
 class SinglePlayer extends Component {
 	constructor() {
@@ -58,7 +53,7 @@ class SinglePlayer extends Component {
 
 		return(
 			<div>
-			
+
 				{this.fetchSinglePlayerStats()}
 				
 				{console.log(this.state.games, "games")}	
@@ -66,7 +61,6 @@ class SinglePlayer extends Component {
 
 				{this.state.stats.map(pass => 
 					(<div>
-						<br></br>
 						{/*
 							https://www.balldontlie.io/api/v1/games/<ID>
 							Need to passed by Database since it uses ID
@@ -75,7 +69,7 @@ class SinglePlayer extends Component {
 							UPDATE: Just call again with a different state
 							To display Lebron stats, make another axios call and skip player after looping once
 						*/}
-
+						<br></br>
 						Game Date: {pass.game.date} <br></br>
 						{pass.game.homeInfo.full_name}:	{pass.game.home_team_score} <br></br>
 						{pass.game.visitorInfo.full_name}: {pass.game.visitor_team_score} <br></br>
@@ -92,6 +86,3 @@ class SinglePlayer extends Component {
 }
 
 export default SinglePlayer;
-
-//after setting up redux store
-//export default connect() (SinglePlayer);
