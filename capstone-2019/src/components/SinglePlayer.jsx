@@ -8,7 +8,7 @@ class SinglePlayer extends Component {
 	constructor() {
 		super()
 		this.state = {
-			id: this.props.params.id, //no longer dummy data
+			id: this.props.match.params.id, //no longer dummy data
 			stats: [], //state for player game info per game
 			info:[], //player info
 			gameID: "48760" //dummy gameID
@@ -21,7 +21,7 @@ class SinglePlayer extends Component {
 	const url = "https://www.balldontlie.io/api/v1/stats";
 	const query = "?seasons[]=2018&player_ids[]=";
 
-	//database passed id for a single specific player
+	//routing passed id for a single specific player
 	//let id = this.props.player
 	axios.get(url + query + this.state.id)
 		.then(response => {
@@ -34,14 +34,21 @@ class SinglePlayer extends Component {
 				gameInfo.game.homeInfo = homeTeam
 				return gameInfo;
 			})
-			console.log('Updated Game Info', result)
 
 			const gameIDs = result.map(gameStats => gameStats.game.id) //specifies location of data to set 
-			console.log(gameIDs)
+
+			console.log(result, "result")
 			
-			this.setState({stats: result}); //sets the state for result and gameIDs (gameIDs takes the mapped)
+			//sorts the objects by date
+			const playerInfo = result.sort((a, b) => {
+
+                   return new Date(b.game.date) - new Date(a.game.date);
+               });
+			
+			this.setState({stats: playerInfo}); //sets the state for result and gameIDs (gameIDs takes the mapped)
 			
 		})
+
 	};
 
 	fetchPlayerInformation = () => {
@@ -49,12 +56,11 @@ class SinglePlayer extends Component {
 
 		axios.get(url + this.state.id)
 			.then(response => {
-				console.log(response)
+				//console.log(response)
 				let result = response.data
 				this.setState({info: [result]});
-
 			})
-
+			
 	}
 
 	//instead of double axios call to get game info from player stat
@@ -62,7 +68,7 @@ class SinglePlayer extends Component {
 
 	render() {
 
-		console.log("this is the state", this.state)
+		// console.log("this is the state", this.state)
 
 		return(
 			<div>
