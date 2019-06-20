@@ -110,7 +110,7 @@ const configureApp = () => {
     }
   });
   app.use("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../capstone-2019", "public/index.html"));
+    res.sendFile(path.join(__dirname, "../capstone-2019", "public/favicon.ico"));
   });
   // More error handling;
   app.use((err, req, res, next) => {
