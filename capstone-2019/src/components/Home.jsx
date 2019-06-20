@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import NavBar from './NavBar';
+import Feed from './Feed';
 import {connect} from 'react-redux';
 
 const mapStates = (state) => {
@@ -21,10 +22,8 @@ class Home extends Component {
             return (
                 <div>
                     <h1> Basketcase </h1>
-
                     <NavBar />
-                    <h2> Feed </h2>
-                    <h4> USER ID is {this.props.user.id} </h4>
+                    <Feed />
                 </div>
             );
         else {
@@ -33,13 +32,7 @@ class Home extends Component {
                 <div>
                     <h1> Basketcase </h1>
                     <NavBar />
-
-                    <h2> Feed </h2>
-                    <h4> Please Login to See Your Feed </h4>
-                    <h4>
-                        If you don't have an account, you can create one by clicking
-                        <Link to='/signUp'> here </Link>
-                    </h4>
+                    <Feed />
                 </div>
             );
         }
