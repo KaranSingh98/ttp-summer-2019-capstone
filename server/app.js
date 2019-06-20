@@ -55,6 +55,8 @@ const syncDatabase = () => {
 
 // Instantiate our express application;
 const app = express();
+//cors
+app.use(cors);
 
 
 // A helper function to create our app with configurations and middleware;
