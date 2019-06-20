@@ -15,6 +15,8 @@ const helmet = require('helmet');
 const compression = require('compression');
 const session = require('express-session');
 const passport = require('passport');
+const Sequelize = require('sequelize');
+
 const User = require('./database/models/user.js');
 
 const cors = require('cors');
@@ -51,6 +53,7 @@ const syncDatabase = () => {
 // Instantiate our express application;
 const app = express();
 
+
 // A helper function to create our app with configurations and middleware;
 const configureApp = () => {
   //app.use(helmet());
@@ -84,8 +87,7 @@ const configureApp = () => {
     }
   });
 
-  //cors
-  app.use(cors());
+
 
   // Mount our apiRouter;
   app.use('/api', apiRouter);
