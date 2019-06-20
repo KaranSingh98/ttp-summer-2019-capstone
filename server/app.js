@@ -66,7 +66,7 @@ const configureApp = () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   //app.use(compression());
- // app.use(cookieParser());
+  // app.use(cookieParser());
   // Session middleware
   app.use(session({
     secret: 'This is not a very secure secret...',
@@ -109,7 +109,9 @@ const configureApp = () => {
       next();
     }
   });
-
+  app.use("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../capstone-2019", "public/index.html"));
+  });
   // More error handling;
   app.use((err, req, res, next) => {
     console.error(err);
