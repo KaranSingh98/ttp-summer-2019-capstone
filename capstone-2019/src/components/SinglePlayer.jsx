@@ -68,15 +68,18 @@ class SinglePlayer extends Component {
 	//instead of double axios call to get game info from player stat
 	//have a seperate state that stores all the teams with there approriate team ID
 
+	componentDidMount = () => {
+		this.fetchSinglePlayerStats()/* fetches player stats for games*/
+		this.fetchPlayerInformation() /* fetches general player information */
+	}
+
 	render() {
 
 		// console.log("this is the state", this.state)
 
-		return(
-			<div>
+		return (
 
-				{this.fetchSinglePlayerStats()} {/* fetches player stats for games*/}
-				{this.fetchPlayerInformation()} {/* fetches general player information */}
+			<div>
 
 				{this.state.info.map(pass =>
 					<div>
