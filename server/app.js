@@ -16,10 +16,13 @@ const compression = require('compression');
 const session = require('express-session');
 const passport = require('passport');
 const Sequelize = require('sequelize');
+const PORT = process.env.PORT || 5000;
+
 
 const User = require('./database/models/user.js');
 
 const cors = require('cors');
+
 
 
 // Utilities;
@@ -86,7 +89,8 @@ const configureApp = () => {
       done(err);
     }
   });
-
+  let locationOfPublicFolder = path.join(__dirname, "../capstone-2019/client", "build");
+  app.use(express.static(locationOfPublicFolder));
 
 
   // Mount our apiRouter;
@@ -116,8 +120,10 @@ const configureApp = () => {
 const bootApp = async () => {
   await syncDatabase();
   await configureApp();
-  await app.listen('5000');
-  await console.log("listening on port 5000");
+  await app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}!!!`);
+  });
+
 };
 
 // Main function invocation;
