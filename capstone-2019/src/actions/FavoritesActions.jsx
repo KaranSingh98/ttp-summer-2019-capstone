@@ -26,26 +26,26 @@ const fetchFavorites = (data) => {
 }
 // thunks
 
-export const addFavoriteThunk = (playerID) => (dispatch) => {
+export const addFavoriteThunk = (playerID, userID) => (dispatch) => {
 	// 
 		return axios
-		.post(`http://localhost:5000/api/users/1/players/${playerID}`, playerID)
+		.post(`http://localhost:5000/api/users/${userID}/players/${playerID}`, playerID)
 		.then(res => res.data)
 		.then(playerID => dispatch(addFavorite(playerID)))
         .catch(err => console.log(err));
 };
 
-export const deleteFavoriteThunk = (playerID) => (dispatch) => {
+export const deleteFavoriteThunk = (playerID, userID) => (dispatch) => {
 	return axios
-	.delete(`http://localhost:5000/api/users/1/players/${playerID}`, playerID)
+	.delete(`http://localhost:5000/api/users/${userID}/players/${playerID}`, playerID)
 	.then(res => res.data)
 	.then(playerID => dispatch(deleteFavorite(playerID)))
 	.catch(err => console.log(err));
 };
 
-export const fetchFavoritesThunk = (data) => (dispatch) => {
+export const fetchFavoritesThunk = (data, userID) => (dispatch) => {
 	return axios
-	.get('http://localhost:5000/api/users/1/favorites/')
+	.get(`http://localhost:5000/api/users/${userID}/favorites/`)
 	.then(res => res.data)
 	.then(data => dispatch(fetchFavorites(data)))
 	.catch(err => console.log(err));
