@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {teamObject} from './teams';
+import './SinglePlayer.css'
 
 //passes in ID through react-routing, which will be used as a state and passes as a parameter
 
@@ -11,7 +12,8 @@ class SinglePlayer extends Component {
 			id: this.props.match.params.id, //no longer dummy data
 			stats: [], //state for player game info per game
 			info:[], //player info
-			gameID: "48760" //dummy gameID
+			gameID: "48760", //dummy gameID
+			imgHS: "" //nba player headshots
 		}
 	}
 
@@ -19,7 +21,7 @@ class SinglePlayer extends Component {
 	fetchSinglePlayerStats = () => {
 
 	const url = "https://www.balldontlie.io/api/v1/stats";
-	const query = "?seasons[]=2018&player_ids[]=";
+	const query = "?seasons[]=2018&per_page=100&player_ids[]=";
 
 	//routing passed id for a single specific player
 	//let id = this.props.player
@@ -53,13 +55,18 @@ class SinglePlayer extends Component {
 	};
 
 	fetchPlayerInformation = () => {
+		
 		const url = "https://www.balldontlie.io/api/v1/players/"
+		const urlHS = "https://nba-players.herokuapp.com/players/" //for player headshots
 
 		axios.get(url + this.state.id)
 			.then(response => {
 				//console.log(response)
 				let result = response.data
-				this.setState({info: [result]});
+				let first = result.first_name 
+				let last = result.last_name
+				let hsPicture = urlHS + last + "/" + first;
+				this.setState({info: [result], imgHS: hsPicture}); //set state for player info and image HS
 			})
 			.catch(err => console.log(err));
 
@@ -68,6 +75,7 @@ class SinglePlayer extends Component {
 	//instead of double axios call to get game info from player stat
 	//have a seperate state that stores all the teams with there approriate team ID
 
+
 	componentDidMount = () => {
 		this.fetchSinglePlayerStats()/* fetches player stats for games*/
 		this.fetchPlayerInformation() /* fetches general player information */
@@ -75,20 +83,22 @@ class SinglePlayer extends Component {
 
 	render() {
 
-		// console.log("this is the state", this.state)
+		console.log("this is the state", this.state)
 
 		return (
 
-			<div>
+			<div class= "sp">
+
+				<img src= {this.state.imgHS} /> {/**/}
 
 				{this.state.info.map(pass =>
-					<div>
+					<div class = "info">
 
 						{pass.first_name} {pass.last_name} <br></br>
 						Height: {pass.height_feet}' {pass.height_inches}" <br></br>
-						Weight: {pass.weight_pounds} <br></br>
+						Weight: {pass.weight_pounds} lbs <br></br>
 						<br></br>
-						Team: {pass.team.full_name} | {pass.team.conference} Conference <br></br>
+						{pass.team.full_name} | {pass.team.conference} Conference <br></br>
 						Position: {pass.position} <br></br>
 
 					</div>
