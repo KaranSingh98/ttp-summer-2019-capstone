@@ -12,7 +12,8 @@ const gotMe = (user) => ({
 
 
 export const getMe = () => (dispatch) => {
-  return axios.get('http://localhost:5000/api/auth/me')
+  //return axios.get('http://localhost:5000/api/auth/me')
+  return axios.get('/api/auth/me')
     .then(res => res.data)
     .then(user => dispatch(gotMe(user)))
     .catch(err => console.log(err));
@@ -22,7 +23,7 @@ export const getMe = () => (dispatch) => {
 
 export const userLogin = (formData) => (dispatch) => {
 
-    return axios.put('http://localhost:5000/api/auth/login', formData)
+    return axios.put('/api/auth/login', formData)
         .then(res => res.data)
         .then(user => dispatch(gotMe(user)))
         .catch(err => console.log(err));
@@ -32,7 +33,7 @@ export const userLogin = (formData) => (dispatch) => {
 
 export const userLogOut = () => (dispatch) => {
 
-    return axios.delete('http://localhost:5000/api/auth/logout')
+    return axios.delete('/api/auth/logout')
         .then(() => dispatch(gotMe({})))
         .catch(err => console.log(err));
 
