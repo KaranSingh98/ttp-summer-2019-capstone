@@ -9,7 +9,7 @@ function cleanup_at_exit {
 
 trap cleanup_at_exit EXIT
 git checkout -b deploy
-cd capstone-2019
+cd ../capstone-2019
 npm run build
 git add build -f
 git commit --allow-empty -m 'Deploying'

@@ -89,7 +89,7 @@ const configureApp = () => {
       done(err);
     }
   });
-  let locationOfPublicFolder = path.join(__dirname, "../capstone-2019/client", "build");
+  let locationOfPublicFolder = path.join(__dirname, "../capstone-2019/", "build");
   app.use(express.static(locationOfPublicFolder));
 
 
