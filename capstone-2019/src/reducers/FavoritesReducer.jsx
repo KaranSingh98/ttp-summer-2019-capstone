@@ -3,7 +3,8 @@ import {ADD_FAVORITE, DELETE_FAVORITE, FETCH_FAVORITES} from '../actions/Favorit
 // const initialState = [];
 
 
-function favoriteReducer(state = [], action)
+function favoriteReducer(state = [],
+	action)
 {
 	//console.log("received action", action.type)
 
@@ -13,9 +14,11 @@ function favoriteReducer(state = [], action)
 		case DELETE_FAVORITE:
 			return state = state.filter(state => state !== action.payload.playerId)
 		case FETCH_FAVORITES:
-			//console.log(action.payload);
-			let newState = action.payload.map(({id}) => id);
-			return newState;
+			return [
+				...state,
+				action.payload
+			];
+
 	default:
 		return state
 }

@@ -10,22 +10,10 @@ class Favorites extends Component {
 		super(props);
 
 		this.state = {
-			// array of playerIds that a user 
+			// array of playerIds that a user
 			// has favorited fetched from db on a session
 			favorites: []
 		}
-	}
-
-	componentDidMount() {
-	//	console.log("mountain")
-		this.props.addFavorite(238);
-		this.props.addFavorite(230);
-		this.props.addFavorite(221);
-		this.props.addFavorite(228);
-
-		this.props.deleteFavorite(228);
-		this.props.deleteFavorite(221);
-		this.props.fetchFavorites(1);
 	}
 
 	render() {
@@ -56,7 +44,7 @@ const mapDispatch = (dispatch) => ({
         deleteFavorite: (playerID) => dispatch(deleteFavoriteThunk(playerID)),
         fetchFavorites: (userID) => dispatch(fetchFavoritesThunk(userID))
 
-     
+
 });
 
 export default connect(mapStates,mapDispatch)(Favorites);

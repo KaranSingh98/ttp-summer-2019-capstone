@@ -32,7 +32,7 @@ class Home extends Component {
                 <div>
                     <h1> Basketcase </h1>
                     <NavBar />
-                    <Feed />
+
                 </div>
             );
         }
