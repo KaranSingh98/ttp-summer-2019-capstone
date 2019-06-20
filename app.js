@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 1234;
 
 
-let locationOfPublicFolder = path.join(__dirname, "client", "build");
+let locationOfPublicFolder = path.join(__dirname, "capstone-2019", "build");
 app.use(express.static(locationOfPublicFolder));
 
 app.listen(PORT, () => {
