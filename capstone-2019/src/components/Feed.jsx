@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {teamObject} from './teams';
@@ -23,7 +23,7 @@ class Feed extends Component {
         this.state = {
 
             favorites: [274, 237, 238],
-            playersInfo: []
+            playersInfo: [],
         }
 
     }; // end of constructor
@@ -48,6 +48,7 @@ class Feed extends Component {
 
             // stats fetched are for the current (2018-19) season only
             axios.get(`https://www.balldontlie.io/api/v1/stats?seasons[]=2018&player_ids[]=${curr}&per_page=100`)
+
                 .then(res => {
 
                     // stats are sorted by date because the stats come in with
@@ -104,11 +105,15 @@ class Feed extends Component {
 
     render() {
 
+        console.log(this.state.playersInfo);
+
         return (
 
             <div className='FeedRender'>
 
                 <h1> Feed </h1>
+
+                <hr/>
 
                 {/* if the user is logged in or not */}
                 {this.props.user.id ? (
@@ -120,6 +125,10 @@ class Feed extends Component {
                             <div key={player.stats[0].player.id}>
 
                                 <h3> {player.playerName} </h3>
+
+                                <Link to= {`player/${player.stats[0].player.id}`}>
+                                    View More
+                                </Link>
 
                                 {/* map only the 5 most recent games */}
                                 {player.stats.slice(0, 5).map(stat =>
