@@ -55,6 +55,7 @@ class Login extends Component {
         };
 
         this.props.userLogin(user);
+        this.props.fetchFavorites(this.props.user.id);
 
     }; // end of handleSubmit
 
