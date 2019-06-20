@@ -35,19 +35,20 @@ class SinglePlayer extends Component {
 				return gameInfo;
 			})
 
-			const gameIDs = result.map(gameStats => gameStats.game.id) //specifies location of data to set 
+			const gameIDs = result.map(gameStats => gameStats.game.id) //specifies location of data to set
 
 			console.log(result, "result")
-			
+
 			//sorts the objects by date
 			const playerInfo = result.sort((a, b) => {
 
                    return new Date(b.game.date) - new Date(a.game.date);
                });
-			
+
 			this.setState({stats: playerInfo}); //sets the state for result and gameIDs (gameIDs takes the mapped)
-			
+
 		})
+		.catch(err => console.log(err));
 
 	};
 
@@ -60,7 +61,8 @@ class SinglePlayer extends Component {
 				let result = response.data
 				this.setState({info: [result]});
 			})
-			
+			.catch(err => console.log(err));
+
 	}
 
 	//instead of double axios call to get game info from player stat
@@ -76,9 +78,9 @@ class SinglePlayer extends Component {
 				{this.fetchSinglePlayerStats()} {/* fetches player stats for games*/}
 				{this.fetchPlayerInformation()} {/* fetches general player information */}
 
-				{this.state.info.map(pass => 
+				{this.state.info.map(pass =>
 					<div>
-						
+
 						{pass.first_name} {pass.last_name} <br></br>
 						Height: {pass.height_feet}' {pass.height_inches}" <br></br>
 						Weight: {pass.weight_pounds} <br></br>
@@ -89,9 +91,9 @@ class SinglePlayer extends Component {
 					</div>
 				)}
 
-				{this.state.stats.map(pass => 
+				{this.state.stats.map(pass =>
 					(<div>
-					
+
 						<br></br>
 						Game Date: {pass.game.date} <br></br>
 						{pass.game.homeInfo.full_name}:	{pass.game.home_team_score} <br></br>
