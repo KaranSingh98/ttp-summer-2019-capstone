@@ -12,8 +12,8 @@ const gotMe = (user) => ({
 
 
 export const getMe = () => (dispatch) => {
-  return axios.get('http://localhost:5000/api/auth/me')
- // return axios.get('/api/auth/me')
+ // return axios.get('http://localhost:5000/api/auth/me')
+ return axios.get('/api/auth/me')
     .then(res => res.data)
     .then(user => dispatch(gotMe(user)))
     .catch(err => console.log(err));
