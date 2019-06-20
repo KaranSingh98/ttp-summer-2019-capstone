@@ -9,11 +9,12 @@ import {fetchFavoritesThunk} from '../actions/FavoritesActions';
 const mapStates = (state) => {
 
     return {
-        playersInfo: state.favoriteReducer,
+        favorites: state.favoriteReducer,
         user: state.loginReducer.user
     };
 
 }; // end of mapStates
+
 
 const mapDispatch = (dispatch) => {
 
@@ -32,32 +33,28 @@ class Feed extends Component {
         super(props);
 
         this.state = {
+            favorites: this.props.favorites,
             playersInfo: []
         }
 
     }; // end of constructor
 
 
-    componentDidMount() {
-        // this.props.fetchFavorites(this.props.user.id)
-        // const favorites = this.props.favorites;
-        // const favorites = [274,238]
-        // await this.getPlayerInfo(favorites);
-        // console.log('user is ', this.props.user.id)
+    componentDidMount = () => {
+
         console.log('Component did mount')
-        this.props.fetchFavorites(this.props.user.id);
-        this.setState({
-            playersInfo: this.props.playersInfo
-        })
+
+        //this.props.fetchFavorites(this.props.user.id);
+
+         this.getPlayerInfo();
     }; // end of componentDidMount
 
     componentDidUpdate = (prevProps) => {
 
-        if(prevProps !== this.props) {
-        this.setState({
-            playersInfo: this.props.playersInfo
-        })
-    }
+        if(prevProps.favorites[0] !== this.props.favorites[0]) {
+
+            this.getPlayerInfo();
+        }
     }
 
     // componentDidUpdate = (prevProps, prevState) => {
@@ -84,52 +81,56 @@ class Feed extends Component {
 
 
     // fecthes the stats of the players favorited by the user
-    //  getPlayerInfo = async () => {
-    //     // console.log('USER ID', this.props.user.id)
-    //     await this.props.fetchFavorites(this.props.user.id)
-    //     // console.log('favs are ', this.props.favorites)
-    //     console.log("Fetch player info")
-    //     const favorites = this.props.favorites;
-    //     const players = []
-    //     // have to go through each favorites player ID individually due to API constraints
-    //     for(let i = 0; i < favorites.length; i++) {
-    //         console.log('THE LOOP IS RUNNING THE LOOP IS RUNNING THE LOOP IS RUNNING ')
-    //         let curr = favorites[i];
-    //
-    //         // stats fetched are for the current (2018-19) season only
-    //         axios.get(`https://www.balldontlie.io/api/v1/stats?seasons[]=2018&player_ids[]=${curr}&per_page=100`)
-    //
-    //             .then(res => {
-    //                     console.log('RESULT OF API CALL =======>>>', res)
-    //                 // stats are sorted by date because the stats come in with
-    //                 // the games out of order
-    //                 const stats = res.data.data.sort((a, b) => {
-    //
-    //                     return new Date(b.game.date) - new Date(a.game.date);
-    //                 });
-    //                 //stats[0] = {player: {first_name: 'Bob', last_name: 'Barker'}}
-    //                 let playerName = stats[0].player.first_name + " " + stats[0].player.last_name;
-    //
-    //                 // an object is created to give each player their games stats
-    //                 // so that when these stats are outputted, the name of the player
-    //                 // is not displayed each time the stats are mapped
-    //                 const newPlayer = {
-    //                     playerName: playerName,
-    //                     stats: stats
-    //                 };
-    //                 players.push(newPlayer)
-    //                 this.setState({playersInfo: players})
-    //             //
-    //             //
-    //             })
-    //             .catch(err => console.log(err));
-    //     }
-    //     console.log('NEW PLAYERS', players)
-    //     // await this.setState({
-    //     //     playersInfo: players
-    //     // });
-    //
-    // } // end of getPlayerInfo
+     getPlayerInfo = () => {
+
+        // console.log('USER ID', this.props.user.id)
+
+        //this.props.fetchFavorites(this.props.user.id)
+        // console.log('favs are ', this.props.favorites)
+
+        console.log("Fetch player info")
+
+        this.props.fetchFavorites(this.props.user.id);
+
+        const favorites = this.props.favorites;
+
+        const players = []
+
+        // have to go through each favorites player ID individually due to API constraints
+        for(let i = 0; i < favorites.length; i++) {
+            console.log('THE LOOP IS RUNNING THE LOOP IS RUNNING THE LOOP IS RUNNING ')
+            let curr = favorites[i];
+
+            // stats fetched are for the current (2018-19) season only
+            axios.get(`https://www.balldontlie.io/api/v1/stats?seasons[]=2018&player_ids[]=${curr}&per_page=100`)
+
+                .then(res => {
+                        console.log('RESULT OF API CALL =======>>>', res)
+                    // stats are sorted by date because the stats come in with
+                    // the games out of order
+                    const stats = res.data.data.sort((a, b) => {
+
+                        return new Date(b.game.date) - new Date(a.game.date);
+                    });
+                    //stats[0] = {player: {first_name: 'Bob', last_name: 'Barker'}}
+                    let playerName = stats[0].player.first_name + " " + stats[0].player.last_name;
+
+                    // an object is created to give each player their games stats
+                    // so that when these stats are outputted, the name of the player
+                    // is not displayed each time the stats are mapped
+                    const newPlayer = {
+                        playerName: playerName,
+                        stats: stats
+                    };
+                    this.setState({
+                        playersInfo: this.state.playersInfo.concat(newPlayer)
+                    })
+                })
+                .catch(err => console.log(err));
+        }
+
+        console.log('players in get are ', players);
+    } // end of getPlayerInfo
 
 
     // returns the opposing team faced by the player in a particular game
@@ -167,12 +168,12 @@ class Feed extends Component {
                 <hr/>
 
                 {/* if the user is logged in or not */}
-                {this.props.user.id && this.props.playersInfo[0] ? (
+                {this.props.user.id ? (
 
                     <div>
                     <p> FEED IS HERE </p>
-                    {console.log('player info is ', this.props.playersInfo)}
-                        {this.props.playersInfo[0].map(player =>
+                    {console.log('player info is ', this.state.playersInfo)}
+                        {this.state.playersInfo.map(player =>
                             <div >
                             {console.log('player is ', player)}
 
