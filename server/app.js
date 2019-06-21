@@ -69,6 +69,7 @@ const configureApp = () => {
     saveUninitialized: false
   }));
   // consumes 'req.session' so that passport can know what's on the session
+  /*
   app.use(passport.initialize());
 
   // this will invoke our registered 'deserializeUser' method
@@ -85,7 +86,8 @@ const configureApp = () => {
     } catch (err) {
       done(err);
     }
-  });
+
+  });*/
 
   //cors
   app.use(cors());
