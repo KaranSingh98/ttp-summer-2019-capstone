@@ -42,11 +42,8 @@ class Feed extends Component {
 
     componentDidMount = () => {
 
-        console.log('Component did mount')
+        this.getPlayerInfo();
 
-        //this.props.fetchFavorites(this.props.user.id);
-
-         this.getPlayerInfo();
     }; // end of componentDidMount
 
     componentDidUpdate = (prevProps) => {
@@ -55,57 +52,30 @@ class Feed extends Component {
 
             this.getPlayerInfo();
         }
-    }
 
-    // componentDidUpdate = (prevProps, prevState) => {
-    //     console.log("Component UPDATEED")
-    //     // if(prevProps.favorites !== this.props.favorites) {
-    //     //     const favorites = this.props.favorites
-    //     //     this.getPlayerInfo(favorites);
-    //     // console.log('cur props', this.state.favorites);
-    //     // console.log('prev props ', prevProps.favorites);
-    //     // // this.getPlayerInfo()
-    //     //
-    //     // }
-    //     console.log('STATE', this.state.favorites)
-    //     console.log('PROPS',this.props.favorites);
-    //     console.log("PREVPROPS",prevProps.favorites)
-    //     if(this.state.favorites.length !== this.props.favorites.length) {
-    //     this.setState({
-    //         favorites: this.props.favorites
-    //     })
-    // }
-    // }
-
-
+    }; // end of componentDidUpdate
 
 
     // fecthes the stats of the players favorited by the user
      getPlayerInfo = () => {
 
-        // console.log('USER ID', this.props.user.id)
-
-        //this.props.fetchFavorites(this.props.user.id)
-        // console.log('favs are ', this.props.favorites)
-
-        console.log("Fetch player info")
-
         this.props.fetchFavorites(this.props.user.id);
 
         const favorites = this.props.favorites;
+
+        console.log('favs are ', favorites);
 
         const players = []
 
         // have to go through each favorites player ID individually due to API constraints
         for(let i = 0; i < favorites.length; i++) {
-            console.log('THE LOOP IS RUNNING THE LOOP IS RUNNING THE LOOP IS RUNNING ')
+
             let curr = favorites[i];
 
             // stats fetched are for the current (2018-19) season only
             axios.get(`https://www.balldontlie.io/api/v1/stats?seasons[]=2018&player_ids[]=${curr}&per_page=100`)
 
                 .then(res => {
-                        console.log('RESULT OF API CALL =======>>>', res)
                     // stats are sorted by date because the stats come in with
                     // the games out of order
                     const stats = res.data.data.sort((a, b) => {
@@ -122,14 +92,17 @@ class Feed extends Component {
                         playerName: playerName,
                         stats: stats
                     };
+
                     this.setState({
                         playersInfo: this.state.playersInfo.concat(newPlayer)
                     })
+
                 })
                 .catch(err => console.log(err));
         }
 
-        console.log('players in get are ', players);
+        console.log('players are ', this.state.playersInfo);
+
     } // end of getPlayerInfo
 
 
@@ -139,8 +112,10 @@ class Feed extends Component {
         const teams = teamObject.data;
 
         for(let i = 0; i < teams.length; i++) {
+
             if(playerTeamId == homeTeamId && teams[i].id == awayTeamId)
                 return teams[i].full_name;
+
             else if(playerTeamId == awayTeamId && teams[i].id == homeTeamId)
                 return teams[i].full_name;
         }
@@ -158,7 +133,7 @@ class Feed extends Component {
 
 
     render() {
-        console.log('NEW RENDER', this.props)
+
         return (
 
             <div className='FeedRender'>
@@ -171,11 +146,14 @@ class Feed extends Component {
                 {this.props.user.id ? (
 
                     <div>
-                    <p> FEED IS HERE </p>
-                    {console.log('player info is ', this.state.playersInfo)}
+
+                        {this.props.favorites.length === 0 &&
+                            <h3> You have no favorites. To add a player to your
+                                favorites, search for a player and click favorite
+                            </h3>}
+
                         {this.state.playersInfo.map(player =>
-                            <div >
-                            {console.log('player is ', player)}
+                            <div key={player.stats[0].player.id}>
 
                                 <h3> {player.playerName} </h3>
 
