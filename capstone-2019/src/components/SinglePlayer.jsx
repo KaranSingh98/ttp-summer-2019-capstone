@@ -2,6 +2,31 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {teamObject} from './teams';
 import './SinglePlayer.css'
+import NavBar from './NavBar';
+import {addFavoriteThunk, deleteFavoriteThunk} from '../actions/FavoritesActions';
+import {connect} from 'react-redux';
+
+
+const mapState = (state) => {
+
+	return {
+		user: state.loginReducer.user
+	};
+}
+
+const mapDispatch = (dispatch) => {
+
+	return {
+		addFavorite: (playerId, userId) => {
+			dispatch(addFavoriteThunk(playerId, userId));
+		},
+		deleteFavorite: (playerId, userId) => {
+			dispatch(deleteFavoriteThunk(playerId, userId));
+		}
+	};
+
+} // end of mapDispatch
+
 
 //passes in ID through react-routing, which will be used as a state and passes as a parameter
 
@@ -14,6 +39,7 @@ class SinglePlayer extends Component {
 			info:[], //player info
 			gameID: "48760", //dummy gameID
 			imgHS: "" //nba player headshots
+			favorite: false,
 		}
 	}
 
@@ -76,10 +102,23 @@ class SinglePlayer extends Component {
 	//have a seperate state that stores all the teams with there approriate team ID
 
 
+	favorite = (id) => {
+
+		this.setState({favorite: true})
+		this.props.addFavorite(id, this.props.user.id);
+	}
+
+	unFavorite = (id) => {
+
+		this.setState({favorite: false})
+		this.props.deleteFavorite(id, this.props.user.id);
+	}
+
 	componentDidMount = () => {
 		this.fetchSinglePlayerStats()/* fetches player stats for games*/
 		this.fetchPlayerInformation() /* fetches general player information */
 	}
+
 
 	render() {
 
@@ -90,6 +129,15 @@ class SinglePlayer extends Component {
 			<div class= "sp">
 
 				<img src= {this.state.imgHS} /> {/**/}
+
+				<NavBar />
+
+				{!this.state.favorite ? (
+					<button onClick={() => this.favorite(this.state.id)}> Favorite </button>
+				) : (
+					<button onClick={() => this.unFavorite(this.state.id)}> Unfavorite </button>
+					)
+				}
 
 				{this.state.info.map(pass =>
 					<div class = "info">
@@ -125,4 +173,4 @@ class SinglePlayer extends Component {
 	}
 }
 
-export default SinglePlayer;
+export default connect(mapState, mapDispatch)(SinglePlayer);

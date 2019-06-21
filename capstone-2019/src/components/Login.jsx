@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import NavBar from './NavBar';
 import {userLogin} from '../actions/LoginActions';
+import {fetchFavoritesThunk} from '../actions/FavoritesActions';
 
 
 const mapStates = (state) => {
@@ -18,6 +19,9 @@ const mapDispatch = (dispatch) => {
     return {
         userLogin: (user) => {
             dispatch(userLogin(user))
+        },
+        fetchFavorites: (id) => {
+            dispatch(fetchFavoritesThunk(id))
         }
     }
 }; // end of mapDispatch
@@ -51,6 +55,7 @@ class Login extends Component {
         };
 
         this.props.userLogin(user);
+        this.props.fetchFavorites(this.props.user.id);
 
     }; // end of handleSubmit
 

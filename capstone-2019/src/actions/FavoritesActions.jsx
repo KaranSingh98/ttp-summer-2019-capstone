@@ -7,7 +7,7 @@ export const FETCH_FAVORITES = 'FETCH_FAVORITES'
 const addFavorite = (playerID) => {
 	return {
 		type: ADD_FAVORITE,
-		payload: playerID 
+		payload: playerID
 	}
 };
 
@@ -26,30 +26,26 @@ const fetchFavorites = (data) => {
 }
 // thunks
 
-export const addFavoriteThunk = (playerID) => (dispatch) => {
-	// 
-		return axios
-		.post(`http://localhost:5000/api/users/1/players/${playerID}`, playerID)
+export const addFavoriteThunk = (playerID, userId) => (dispatch) => {
+	//
+		return axios.post(`http://localhost:5000/api/users/${userId}/players/${playerID}`, playerID)
+			.then(res => res.data)
+			.then(playerID => dispatch(addFavorite(playerID)))
+        	.catch(err => console.log(err));
+};
+
+export const deleteFavoriteThunk = (playerID, userId) => (dispatch) => {
+	console.log(userId);
+	return axios.delete(`http://localhost:5000/api/users/${userId}/players/${playerID}`, playerID)
 		.then(res => res.data)
-		.then(playerID => dispatch(addFavorite(playerID)))
-        .catch(err => console.log(err));
+		.then(playerID => dispatch(deleteFavorite(playerID)))
+		.catch(err => console.log(err));
 };
 
-export const deleteFavoriteThunk = (playerID) => (dispatch) => {
-	return axios
-	.delete(`http://localhost:5000/api/users/1/players/${playerID}`, playerID)
-	.then(res => res.data)
-	.then(playerID => dispatch(deleteFavorite(playerID)))
-	.catch(err => console.log(err));
-};
-
-export const fetchFavoritesThunk = (data) => (dispatch) => {
-	return axios
-	.get('http://localhost:5000/api/users/1/favorites/')
-	.then(res => res.data)
-	.then(data => dispatch(fetchFavorites(data)))
-	.catch(err => console.log(err));
-
-
+export const fetchFavoritesThunk = (userId) => (dispatch) => {
+	console.log('user id in thunk ', userId)
+	return axios.get(`http://localhost:5000/api/users/${userId}/favorites/`)
+		.then(res => res.data)
+		.then(data => dispatch(fetchFavorites(data)))
+		.catch(err => console.log(err));
 }
-

@@ -15,9 +15,14 @@ const helmet = require('helmet');
 const compression = require('compression');
 const session = require('express-session');
 const passport = require('passport');
+const Sequelize = require('sequelize');
+const PORT = process.env.PORT || 5000;
+
+
 const User = require('./database/models/user.js');
 
 const cors = require('cors');
+
 
 
 // Utilities;
@@ -50,6 +55,9 @@ const syncDatabase = () => {
 
 // Instantiate our express application;
 const app = express();
+//cors
+app.use(cors);
+
 
 // A helper function to create our app with configurations and middleware;
 const configureApp = () => {
@@ -58,7 +66,7 @@ const configureApp = () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   //app.use(compression());
- // app.use(cookieParser());
+  // app.use(cookieParser());
   // Session middleware
   app.use(session({
     secret: 'This is not a very secure secret...',
@@ -83,9 +91,9 @@ const configureApp = () => {
       done(err);
     }
   });
+  let locationOfPublicFolder = path.join(__dirname, "../capstone-2019/", "build");
+  app.use(express.static(locationOfPublicFolder));
 
-  //cors
-  app.use(cors());
 
   // Mount our apiRouter;
   app.use('/api', apiRouter);
@@ -101,7 +109,9 @@ const configureApp = () => {
       next();
     }
   });
-
+  app.use("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../capstone-2019", "public/favicon.ico"));
+  });
   // More error handling;
   app.use((err, req, res, next) => {
     console.error(err);
@@ -114,8 +124,10 @@ const configureApp = () => {
 const bootApp = async () => {
   await syncDatabase();
   await configureApp();
-  await app.listen('5000');
-  await console.log("listening on port 5000");
+  await app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}!!!`);
+  });
+
 };
 
 // Main function invocation;
