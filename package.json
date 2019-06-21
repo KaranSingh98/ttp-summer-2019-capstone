@@ -9,7 +9,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd server && npm i && node app.js"
+    "start": "cd server && npm i && npm run seed && node app.js"
+
   },
   "repository": {
     "type": "git",
