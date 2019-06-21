@@ -25,6 +25,8 @@ class Home extends Component {
                     <h1> Basketcase </h1>
 
                         <NavBar />
+
+                    {this.props.user.id && <h3> Welcome {this.props.user.email} </h3>}
                     <div className='NavBar'>
                     <Feed />
                     </div>

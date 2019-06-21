@@ -41,8 +41,8 @@ class NavBar extends Component {
             return (
                 <div>
                     <nav>
-                        <Link to='/'> <p>Home</p> </Link>
-                        <Link to='/' onClick={this.handleLogOut}>
+                        <Link to='/' className='link'> <p>Home</p> </Link>
+                        <Link to='/' onClick={this.handleLogOut} className='link'>
                             <p>Logout</p>
                         </Link>
                         <PlayerSearch />
