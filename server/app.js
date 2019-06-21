@@ -75,7 +75,7 @@ const configureApp = () => {
   // this will invoke our registered 'deserializeUser' method
   // and attempt to put our user on 'req.user'
   app.use(passport.session());
-  /*
+
   // after we find or create a user, we 'serialize' our user on the session
   passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -88,7 +88,7 @@ const configureApp = () => {
       done(err);
     }
 
-  });*/
+  });
 
   //cors
   app.use(cors());
