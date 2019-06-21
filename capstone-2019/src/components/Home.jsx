@@ -23,8 +23,11 @@ class Home extends Component {
             return (
                 <div>
                     <h1> Basketcase </h1>
-                    <NavBar />
+
+                        <NavBar />
+                    <div className='NavBar'>
                     <Feed />
+                    </div>
                 </div>
             );
         else {

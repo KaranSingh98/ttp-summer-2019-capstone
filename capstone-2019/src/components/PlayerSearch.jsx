@@ -58,7 +58,7 @@ class PlayerSearch extends Component {
 
 		return (
 			<div>
-				<form name='PlayerSearch'>
+				<form name='PlayerSearch' style={{color: 'blue'}}>
             		<input type='text' name='query' placeholder='Search for a player' onChange={this.handleChange}/>
         		</form>
 

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {userLogOut} from '../actions/LoginActions';
 import PlayerSearch from './PlayerSearch';
+import './NavBar.css';
 
 const mapStates = (state) => {
     return {
@@ -40,9 +41,9 @@ class NavBar extends Component {
             return (
                 <div>
                     <nav>
-                        <Link to='/'> Home </Link>
+                        <Link to='/'> <p>Home</p> </Link>
                         <Link to='/' onClick={this.handleLogOut}>
-                            Logout
+                            <p>Logout</p>
                         </Link>
                         <PlayerSearch />
                     </nav>

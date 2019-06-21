@@ -40,7 +40,7 @@ class SinglePlayer extends Component {
 			stats: [], //state for player game info per game
 			info:[], //player info
 			gameID: "48760", //dummy gameID
-			imgHS: "" //nba player headshots
+			imgHS: "", //nba player headshots
 			favorite: false,
 		}
 	}
@@ -83,7 +83,7 @@ class SinglePlayer extends Component {
 	};
 
 	fetchPlayerInformation = () => {
-		
+
 		const url = "https://www.balldontlie.io/api/v1/players/"
 		const urlHS = "https://nba-players.herokuapp.com/players/" //for player headshots
 
@@ -91,7 +91,7 @@ class SinglePlayer extends Component {
 			.then(response => {
 				//console.log(response)
 				let result = response.data
-				let first = result.first_name 
+				let first = result.first_name
 				let last = result.last_name
 				let hsPicture = urlHS + last + "/" + first;
 				this.setState({info: [result], imgHS: hsPicture}); //set state for player info and image HS
@@ -163,6 +163,15 @@ class SinglePlayer extends Component {
 	}; // end of renderFavoriteButton
 
 
+	getDate = (date) => {
+
+		let newDate = new Date(date);
+
+		return newDate.toDateString();
+
+	}; // end of getDate
+
+
 	render() {
 
 		console.log("this is the state", this.state)
@@ -202,7 +211,7 @@ class SinglePlayer extends Component {
 					(<div>
 
 						<br></br>
-						Game Date: {pass.game.date} <br></br>
+						Game Date: {this.getDate(pass.game.date)} <br></br>
 						{pass.game.homeInfo.full_name}:	{pass.game.home_team_score} <br></br>
 						{pass.game.visitorInfo.full_name}: {pass.game.visitor_team_score} <br></br>
 						Points: {pass.pts}<br></br>

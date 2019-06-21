@@ -23,6 +23,8 @@ export const getMe = () => (dispatch) => {
 
 export const userLogin = (formData) => (dispatch) => {
 
+    console.log('user is ', formData)
+
     return axios.put('http://localhost:5000/api/auth/login', formData)
         .then(res => res.data)
         .then(user => dispatch(gotMe(user)))
