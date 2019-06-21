@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import NavBar from './NavBar';
 import Feed from './Feed';
 import {connect} from 'react-redux';
+import './Home.css'
 
 const mapStates = (state) => {
     return {
