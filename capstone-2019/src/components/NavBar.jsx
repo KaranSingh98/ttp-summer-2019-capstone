@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {userLogOut} from '../actions/LoginActions';
 import PlayerSearch from './PlayerSearch';
+import './NavBar.css';
 
 const mapStates = (state) => {
     return {
