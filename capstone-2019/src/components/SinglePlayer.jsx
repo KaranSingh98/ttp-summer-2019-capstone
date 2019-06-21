@@ -104,10 +104,10 @@ class SinglePlayer extends Component {
 	//have a seperate state that stores all the teams with there approriate team ID
 
 
-	favorite = (id) => {
+	favorite = () => {
 
 		this.setState({favorite: true})
-		this.props.addFavorite(id, this.props.user.id);
+		this.props.addFavorite(this.state.id, this.props.user.id);
 	}
 
 	unFavorite = (id) => {
@@ -177,7 +177,7 @@ class SinglePlayer extends Component {
 
 				{!this.state.favorite && !this.alreadyInFav(this.state.id) ? (
 
-					<button onClick={() => this.favorite(this.state.id)}> Favorite </button>
+					<button onClick={() => this.favorite()}> Favorite </button>
 				): (
 
 					<button onClick={() => this.unFavorite(this.state.id)}> UnFavorite </button>
