@@ -17,6 +17,7 @@ const session = require('express-session');
 const passport = require('passport');
 const User = require('./database/models/user.js');
 const PORT = process.env.PORT || 5000;
+const Sequelize = require('sequelize');
 
 
 const cors = require('cors');
