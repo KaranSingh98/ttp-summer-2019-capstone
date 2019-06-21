@@ -55,6 +55,7 @@ const syncDatabase = () => {
 
 // Instantiate our express application;
 const app = express();
+
 //cors
 app.use(cors);
 
@@ -91,8 +92,10 @@ const configureApp = () => {
       done(err);
     }
   });
+  /*
   let locationOfPublicFolder = path.join(__dirname, "../capstone-2019/", "build");
   app.use(express.static(locationOfPublicFolder));
+  */
 
 
   // Mount our apiRouter;
@@ -109,9 +112,10 @@ const configureApp = () => {
       next();
     }
   });
+  /*
   app.use("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../capstone-2019", "public/favicon.ico"));
-  });
+  });*/
   // More error handling;
   app.use((err, req, res, next) => {
     console.error(err);
