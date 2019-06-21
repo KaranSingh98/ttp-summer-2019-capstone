@@ -15,7 +15,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const session = require('express-session');
 const passport = require('passport');
-const User = require('./database/models/');
+const User = require('./database/models/user');
 const PORT = process.env.PORT || 5000;
 const Sequelize = require('sequelize');
 
@@ -50,6 +50,8 @@ const syncDatabase = () => {
       });
   }
 };
+
+//const users = User.findAll();
 
 // Instantiate our express application;
 const app = express();
