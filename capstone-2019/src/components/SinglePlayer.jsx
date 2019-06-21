@@ -4,12 +4,14 @@ import {teamObject} from './teams';
 import NavBar from './NavBar';
 import {addFavoriteThunk, deleteFavoriteThunk} from '../actions/FavoritesActions';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 
 const mapState = (state) => {
 
 	return {
-		user: state.loginReducer.user
+		user: state.loginReducer.user,
+		favorites: state.favoriteReducer
 	};
 }
 
@@ -45,7 +47,7 @@ class SinglePlayer extends Component {
 	fetchSinglePlayerStats = () => {
 
 	const url = "https://www.balldontlie.io/api/v1/stats";
-	const query = "?seasons[]=2018&player_ids[]=";
+	const query = "?seasons[]=2018&per_page=100&player_ids[]=";
 
 	//routing passed id for a single specific player
 	//let id = this.props.player
@@ -105,12 +107,53 @@ class SinglePlayer extends Component {
 
 		this.setState({favorite: false})
 		this.props.deleteFavorite(id, this.props.user.id);
+		//this.props.deleteFavorite(id, this.props.user.id);
+
 	}
 
 	componentDidMount = () => {
 		this.fetchSinglePlayerStats()/* fetches player stats for games*/
 		this.fetchPlayerInformation() /* fetches general player information */
+		//this.renderFavoriteButton()
 	}
+
+	// checks to see if a player is already favorited by a user
+	alreadyInFav = (id) => {
+
+		let found = false;
+
+		for(let i = 0; i < this.props.favorites.length; i++) {
+			if(this.props.favorites[i] == id)
+				found = true;
+		}
+
+		return found;
+
+	}; // end of alreadyInFav
+
+
+	renderFavoriteButton = () => {
+
+		if(!this.state.favorite && !this.alreadyInFav(this.state.id) && this.props.user.id) {
+
+			return (
+				<button onClick={() => this.favorite(this.state.id)}> Favorite </button>
+			)
+		}
+		else if(!this.state.favorite) {
+			return (
+				<Link to='/login'>
+					<button> Favorite </button>
+				</Link>
+			)
+		}
+		else {
+			return (
+				<button onClick={() => this.unFavorite(this.state.id)}> UnFavorite </button>
+			)
+		}
+
+	}; // end of renderFavoriteButton
 
 
 	render() {
@@ -123,12 +166,15 @@ class SinglePlayer extends Component {
 
 				<NavBar />
 
-				{!this.state.favorite ? (
+				{!this.state.favorite && !this.alreadyInFav(this.state.id) ? (
+
 					<button onClick={() => this.favorite(this.state.id)}> Favorite </button>
-				) : (
-					<button onClick={() => this.unFavorite(this.state.id)}> Unfavorite </button>
-					)
-				}
+				): (
+
+					<button onClick={() => this.unFavorite(this.state.id)}> UnFavorite </button>
+				)}
+
+				{/*this.renderFavoriteButton()*/}
 
 				{this.state.info.map(pass =>
 					<div>
