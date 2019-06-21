@@ -5,3 +5,9 @@ body {
     background-size: 1280px 720px;
     /*background-position: center;*/
 }
+
+h1 {
+	font-family: Georgia;
+	color: orange;
+	font-size: 50pxs;
+}

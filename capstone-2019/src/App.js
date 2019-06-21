@@ -11,6 +11,7 @@ import PlayerResults from './components/PlayerResults';
 import SinglePlayer from './components/SinglePlayer';
 import Favorites from './components/Favorites';
 
+
 class App extends Component {
 
     constructor(props){

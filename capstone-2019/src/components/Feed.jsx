@@ -4,7 +4,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {teamObject} from './teams';
 import {fetchFavoritesThunk} from '../actions/FavoritesActions';
-
+import './Feed.css';
 
 const mapStates = (state) => {
 

@@ -40,7 +40,7 @@ class SinglePlayer extends Component {
 			stats: [], //state for player game info per game
 			info:[], //player info
 			gameID: "48760", //dummy gameID
-			imgHS: "" //nba player headshots
+			imgHS: "", //nba player headshots
 			favorite: false,
 		}
 	}
