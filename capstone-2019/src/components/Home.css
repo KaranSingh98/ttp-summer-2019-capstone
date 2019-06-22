@@ -1,11 +1,11 @@
 body {
 	text-align: center;
 	background-image: url("https://wallpaperplay.com/walls/full/0/5/d/109608.jpg");
-    background-repeat: no-repeat;
     background-size: 1280px 720px;
     /*background-position: center;*/
 }
 
+<<<<<<< HEAD
 body .img {
 
 	height: auto;
@@ -16,3 +16,10 @@ h1 {
 	color: orange;
 	font-size: 50px;
 }
+=======
+h1 {
+	font-family: Georgia;
+	color: orange;
+	font-size: 50pxs;
+}
+>>>>>>> 9900ff5d9509dd80ba730c4fcaea513eccbf48b3

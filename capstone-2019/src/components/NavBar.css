@@ -1,4 +1,5 @@
 a {
+<<<<<<< HEAD
     color: white;
 }
 
@@ -6,3 +7,11 @@ a:visited{
 
     color: white;
 }
+=======
+	color:orange;
+}
+
+a:visited {
+	color: orange;
+}
+>>>>>>> 9900ff5d9509dd80ba730c4fcaea513eccbf48b3
