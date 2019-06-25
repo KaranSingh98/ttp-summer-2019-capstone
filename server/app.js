@@ -15,7 +15,10 @@ const helmet = require('helmet');
 const compression = require('compression');
 const session = require('express-session');
 const passport = require('passport');
-const User = require('./database/models/user.js');
+const User = require('./database/models/user');
+const PORT = process.env.PORT || 5000;
+const Sequelize = require('sequelize');
+
 
 const cors = require('cors');
 
@@ -48,6 +51,8 @@ const syncDatabase = () => {
   }
 };
 
+//const users = User.findAll();
+
 // Instantiate our express application;
 const app = express();
 
@@ -66,22 +71,25 @@ const configureApp = () => {
     saveUninitialized: false
   }));
   // consumes 'req.session' so that passport can know what's on the session
+
   app.use(passport.initialize());
 
   // this will invoke our registered 'deserializeUser' method
   // and attempt to put our user on 'req.user'
   app.use(passport.session());
+
   // after we find or create a user, we 'serialize' our user on the session
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
   passport.deserializeUser(async (id, done) => {
     try {
-      const user = await User.findById(id);
+      const user = await User.findByPk(id);
       done(null, user);
     } catch (err) {
       done(err);
     }
+
   });
 
   //cors
@@ -89,6 +97,8 @@ const configureApp = () => {
 
   // Mount our apiRouter;
   app.use('/api', apiRouter);
+  let locationOfPublicFolder = path.join(__dirname, "../capstone-2019/", "build");
+  app.use(express.static(locationOfPublicFolder));
 
   // Error handling;
   app.use((req, res, next) => {
@@ -114,8 +124,14 @@ const configureApp = () => {
 const bootApp = async () => {
   await syncDatabase();
   await configureApp();
+  /*
   await app.listen('5000');
   await console.log("listening on port 5000");
+  */
+   await app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}!!!`);
+
+   });
 };
 
 // Main function invocation;
