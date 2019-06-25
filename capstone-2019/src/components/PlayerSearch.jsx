@@ -52,9 +52,9 @@ class PlayerSearch extends Component {
 		const playerObj = this.state.results;
 		const list = playerObj.map((playerObj) =>
 			<Link to={`/player/${playerObj.id}`} key={playerObj.id}>
-			<li> {playerObj.first_name + "\n"} {playerObj.last_name + "\n" } </li>
+				<li> {playerObj.first_name + "\n"} {playerObj.last_name + "\n" } </li>
 			</Link>
-			);
+		);
 
 		return (
 			<div>

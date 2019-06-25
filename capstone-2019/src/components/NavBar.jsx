@@ -41,10 +41,10 @@ class NavBar extends Component {
             return (
                 <div>
                     <nav>
-                        <Link to='/'> Home </Link>
-                        <Link to='/' onClick={this.handleLogOut}>
+                        <a href='/'> Home </a>
+                        <a href='/' onClick={this.handleLogOut}>
                             Logout
-                        </Link>
+                        </a>
                         <PlayerSearch />
                     </nav>
                 </div>
@@ -54,9 +54,9 @@ class NavBar extends Component {
             return (
                 <div>
                     <nav>
-                        <Link to='/'> Home </Link>
-                        <Link to='/Login'> Login </Link>
-                        <Link to ='/SignUp'> Sign Up </Link>
+                        <a href='/'> Home </a>
+                        <a href='/Login'> Login </a>
+                        <a href='/SignUp'> Sign Up </a>
                         <PlayerSearch />
                     </nav>
                 </div>

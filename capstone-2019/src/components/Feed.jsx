@@ -153,29 +153,33 @@ class Feed extends Component {
                             </h3>}
 
                         {this.state.playersInfo.map(player =>
-                            <div key={player.stats[0].player.id}>
+                            <div key={player.stats[0].player.id} className="FeedCard">
+
+                                <img src='../../public/favicon.ico' alt="icon"/>
 
                                 <h3> {player.playerName} </h3>
 
                                 <Link to= {`player/${player.stats[0].player.id}`}>
                                     View More
                                 </Link>
+                                <div className="Container">
+                                    {/* map only the 5 most recent games */}
+                                    {player.stats.slice(0, 5).map(stat =>
 
-                                {/* map only the 5 most recent games */}
-                                {player.stats.slice(0, 5).map(stat =>
+                                        <div key={stat.game.id}>
 
-                                    <div key={stat.game.id}>
+                                            <h4>
+                                                Against: {this.getTeam(stat.team.id,
+                                                stat.game.home_team_id, stat.game.visitor_team_id)} on
+                                                {" "} {this.getDate(stat.game.date)}
+                                            </h4>
 
-                                        <h4>
-                                            Against: {this.getTeam(stat.team.id,
-                                            stat.game.home_team_id, stat.game.visitor_team_id)} on
-                                            {" "} {this.getDate(stat.game.date)}
-                                        </h4>
+                                            <p> Points Scored: {stat.pts} </p>
 
-                                        <p> Points Scored: {stat.pts} </p>
-
-                                    </div>
-                                )}
+                                        </div>
+                                    )}
+                                </div>
+                                
                                 <hr/>
 
                             </div>
