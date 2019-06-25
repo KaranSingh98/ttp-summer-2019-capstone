@@ -23,8 +23,7 @@ class Home extends Component {
             return (
                 <div>
                     <h1> Basketcase </h1>
-
-
+                    
                         <NavBar />
 
                     {this.props.user.id && <h3> Welcome {this.props.user.email} </h3>}
