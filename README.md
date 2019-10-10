@@ -6,4 +6,7 @@ Yarn or Npm
 # Install Node Modules
 `yarn` or `npm i`
 
+# Start React App
+`yar`
+
 Link: https://basketcase-capstone.herokuapp.com
